@@ -1,9 +1,17 @@
 import React from 'react'
 
-function HeroSliderCard(){
+function HeroSliderCard({name,img}){
   return (
     <div>
-      
+      <div className='flex justify-between sm:items-center items-start my-2 gap-1 heroSlider'>
+        <div className='flex flex-col gap-4 items-center lg:px-28 md:px-16 sm:px-8 px-2 justify-center w-1/2'>
+            <h1 className='md:text-4xl sm:text-2xl text-lg text-left sm:font-bold font-semibold  font-mono'>Get Your Meals Delivered from Curated Home Chefs Around You</h1>
+            <button className='bg-slate-900 font-semibold py-2 sm:w-full w-full  text-white rounded-md'>Book Your Tiffin</button>
+        </div>
+        <div className='h-full sm:w-2/5 w-1/2 overflow-hidden sm:px-4 flex sm:items-center items-start pt-3'>
+            <img src="https://alignthoughts.com/wp-content/uploads/2016/10/align-thoughts-indian-thali.jpg" className='lg:h-full h-4/5 w-full overflow-hidden heroImage' alt="Poster" />
+        </div>
+      </div>
     </div>
   )
 }
