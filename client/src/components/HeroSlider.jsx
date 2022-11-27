@@ -29,9 +29,9 @@ function HeroSlider() {
         centeredSlides={true}
         loop={true}
         speed={900}
-        // autoplay={{
-        //   delay: 3500,
-        // }}
+        autoplay={{
+          delay: 3500,
+        }}
         pagination={{
           clickable: true,
         }}

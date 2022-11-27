@@ -9,9 +9,9 @@ function HomePage() {
   return (
     <div>
       <HeroSlider />
-      <Info />
       <ChooseUs />
       <Testimonials />
+      <Info />
       
     </div>
   )
