@@ -54,3 +54,11 @@ body{
         padding-top: 0px;
     }
 }
+.chooseuscss{
+    font-family: 'Trochut', cursive;
+}
+@media (min-width:1024px) {
+    .lastimg{
+        height: 200px !important;
+    }
+}
