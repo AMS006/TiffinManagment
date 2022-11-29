@@ -36,7 +36,7 @@ function Testimonials() {
     ]
   return (
     <div className=' my-4'>
-        <h1 className='font-bold md:text-2xl text-xl text-center py-3'>Testimonials</h1>
+        <h1 className='font-bold md:text-2xl text-xl text-center py-7'>Testimonials</h1>
         <Swiper
         spaceBetween={30}
         // centeredSlides={true}
