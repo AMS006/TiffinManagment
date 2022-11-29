@@ -3,8 +3,9 @@
 @tailwind utilities;
 
 body{
-    background: #eef2f2;
+    background: #ffff;
     color: #2e2c35;
+    overflow-x: hidden;
 }
 .swiper-pagination-bullet-active{
     background: #0f172a !important;

@@ -9,13 +9,13 @@ function Footer() {
     <>
       <div className=" mx-auto py-4 bg-gray-200 sm:grid sm:grid-cols-2 sm:px-4 md:grid md:grid-cols-3 px-5 lg:grid lg:grid-cols-3 ">
       <div className="naem order-1 pt-5 md:pl-7 lg:flex flex-col items-center ">
-        <h1 className='font-bold text-5xl text-slate-900 md:text-4xl md:pt-1'>TifinWala</h1>
+        <h1 className='font-bold lg:text-5xl text-slate-900 md:text-4xl text-2xl md:pt-1'>TifinWala</h1>
         <p className='sm:text-xl sm:font-medium px-3 pt-4 text-lg font-normal md:px-0'>Your Everyday Meals</p>
         <p className='sm:text-xl sm:font-medium px-3 text-lg font-normal md:px-0'>Made Convenient</p>
       </div>
       <div className="contactus py-4 order-2  md:py-4 lg:flex flex-col items-center">
       <h1 className="font-bold py-2  text-2xl">Contact Us</h1>
-      <ul className='flex flex-col'>
+      <ul className='flex flex-col '>
         <li className='px-2 flex gap-2 items-center text-gray-900 text-lg'><MdEmail className=''
         />tifinwala420@gmail.com</li>
         <li className='px-2 flex gap-1 items-center text-gray-900 text-lg'><BsFillTelephoneFill className=''
