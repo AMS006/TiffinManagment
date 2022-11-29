@@ -6,7 +6,11 @@
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@mui/icons-material": "^5.10.16",
+<<<<<<< HEAD
     "@mui/material": "^5.10.15",
+=======
+    "@mui/material": "^5.10.16",
+>>>>>>> 50a2fab34c6f1fd87a844e5a7ccda481dfc3e113
     "@mui/styled-engine-sc": "^5.10.14",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
