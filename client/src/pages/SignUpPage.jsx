@@ -10,7 +10,7 @@ function SignUpPage() {
   const [email,setEmail] = useState("")
   const [password,setPassword] = useState("")
   const [confirmPassword,setConfirmPassword] = useState("")
-  const [phoneNum,setPhoneNum] = useState()
+  const [phoneNum,setPhoneNum] = useState("")
   const [passwordMatch,setPasswordMatch] = useState(true)
   const navigate = useNavigate()
   const handleSubmit = (e) =>{
@@ -28,6 +28,11 @@ function SignUpPage() {
       navigate("/");
     }
   }
+  document.body.onkeydown = function(e) {
+    
+    if (e.key === "Enter")
+        handleSubmit();
+  };
   return (
     <div>
       <div className='py-2 sm:px-8 px-2 shadow flex justify-between items-center'>
@@ -55,12 +60,12 @@ function SignUpPage() {
                 </div>
                 <div className='flex items-center border bg-white w-full'>
                     <span className='px-2 h-full'><GrSecure /></span>
-                    <input type="password" value={password} name="password" placeholder='Enter New Password' className='w-full h-full px-2 py-2 border-l focus:outline-none' id="email" required onChange={(e) => setPassword(e.target.value)}/>
+                    <input type="password" value={password} name="password" placeholder='Enter New Password' className='w-full h-full px-2 py-2 border-l focus:outline-none' id="password" required onChange={(e) => setPassword(e.target.value)}/>
                 </div>
                 <div>
                   <div className='flex items-center border bg-white w-full'>
                       <span className='px-2 h-full'><GrSecure /></span>
-                      <input type="password" value={confirmPassword} name="password" placeholder='Confirm Your Password' className='w-full h-full px-2 py-2 border-l focus:outline-none' id="email" required onChange={(e) => setConfirmPassword(e.target.value)}/>
+                      <input type="password" value={confirmPassword} name="password" placeholder='Confirm Your Password' className='w-full h-full px-2 py-2 border-l focus:outline-none' id="confirm-password" required onChange={(e) => setConfirmPassword(e.target.value)}/>
                   </div>
                   {!passwordMatch && <small className='text-red-600'>* Password does not match</small>}
                 </div>

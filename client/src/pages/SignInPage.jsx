@@ -14,6 +14,7 @@ function SignInPage() {
     setPassword("")
     navigate("/")
   }
+  
   return (
     <div>
       <div className='py-2 sm:px-8 px-2 shadow flex justify-between items-center'>

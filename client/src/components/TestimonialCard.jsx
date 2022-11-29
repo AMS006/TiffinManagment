@@ -4,7 +4,7 @@ import ReactStars from "react-rating-stars-component";
 function TestimonialCard(props) {
   return (
     <div className='flex flex-col items-center w-full h-full'>
-      <div className='border rounded flex flex-col shadow-lg items-center w-4/5 h-full px-2 py-3'>
+      <div className='border border-slate-900 rounded flex flex-col shadow shadow-slate-800 items-center w-4/5 h-full px-2 py-3'>
         <div className='w-12 h-12 rounded-full overflow-hidden'>
             <img src={props.img} alt={props.name} />
         </div>
