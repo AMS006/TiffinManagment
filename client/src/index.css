@@ -6,6 +6,8 @@ body{
     background: #ffff;
     color: #2e2c35;
     overflow-x: hidden;
+    padding: 0px;
+    margin: 0px;
 }
 .swiper-pagination-bullet-active{
     background: #0f172a !important;
@@ -16,9 +18,6 @@ body{
 }
 .heroImage{
     border-radius: 55px 0px 0px 55px;
-}
-.heroSlider{
-    height:45vh
 }
 .swiper-button-prev,
 .swiper-button-next{
@@ -47,11 +46,16 @@ body{
         border-radius: 20px 0px 0px 20px;
         height: 60% !important;
     }
-    .heroSlider{
-        height: 38vh;
-    }
     .swiper-button-next::after,
     .swiper-button-prev::after{
         padding-top: 0px;
+    }
+}
+.chooseuscss{
+    font-family: 'Trochut', cursive;
+}
+@media (min-width:1024px) {
+    .lastimg{
+        height: 200px !important;
     }
 }

@@ -6,7 +6,7 @@ import ProviderSkeleton from './skeleton/ProviderSkeleton'
 function ProviderCard({img,name,address,cuisines,rating,id}) {
   return (
     <>
-      {img?<Link to={`/provider/${id}`} className='flex flex-col p-2 border hover:shadow-lg rounded-lg transition duration-300 ease-in gap-3'>
+      {img?<Link to={`/provider/${id}`} className='flex flex-col p-2 md:border border-gray-600 hover:shadow-lg rounded-lg transition duration-300 ease-in gap-3'>
         <div className='w-full h-44'>
           <img src={img} alt="name" className='w-full h-full'/>
         </div>

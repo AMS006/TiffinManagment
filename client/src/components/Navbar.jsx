@@ -49,7 +49,7 @@ function NavbarSm({name}){
             </div>
       </div>
        <ul className={`gap-3 flex flex-col items-center absolute z-10 font-semibold h-64 transition ease-in-out duration-500  py-3 w-full ${open?'translate-x-0':'-translate-x-full'}`} style={{backgroundColor:'#eef2f2'}}>
-        <li><Link>Tiffin Providers</Link></li>
+        <li><Link to="/providers">Tiffin Providers</Link></li>
         <li><Link>About Us</Link></li>
         <li><Link>Contact Us</Link></li>
         {!name?<div className='flex flex-col gap-3 items-center'>

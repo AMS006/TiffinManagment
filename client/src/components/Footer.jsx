@@ -7,9 +7,9 @@ import { NavLink } from 'react-router-dom';
 function Footer() {
   return (
     <>
-      <div className=" mx-auto py-4 bg-gray-200 sm:grid sm:grid-cols-2 sm:px-4 md:grid md:grid-cols-3 px-5 lg:grid lg:grid-cols-3 ">
+      <div className=" mx-auto py-4 bg-gray-200 sm:grid sm:grid-cols-2 sm:px-4 md:grid md:grid-cols-3 px-5 lg:grid lg:grid-cols-3 mt-2">
       <div className="naem order-1 pt-5 md:pl-7 lg:flex flex-col items-center ">
-        <h1 className='font-bold lg:text-5xl text-slate-900 md:text-4xl text-2xl md:pt-1'>TifinWala</h1>
+        <h1 className='font-bold text-3xl text-slate-900 md:text-4xl md:pt-1'>Name</h1>
         <p className='sm:text-xl sm:font-medium px-3 pt-4 text-lg font-normal md:px-0'>Your Everyday Meals</p>
         <p className='sm:text-xl sm:font-medium px-3 text-lg font-normal md:px-0'>Made Convenient</p>
       </div>
@@ -24,16 +24,19 @@ function Footer() {
       </ul>
       </div>
       <div className="links order-2  md:pt-4 md:pl-5 lg:flex flex-col items-center">
-     <ul className='pb-3 px-1'>
+     <ul className='pb-3 '>
      <h1 className='font-bold text-2xl py-2 '>Links</h1>
-     <NavLink to="#"><li className=' font-medium cursor-pointer hover:text-blue-700'>Home</li></NavLink>
-     <NavLink to="#"><li className=' font-medium cursor-pointer  hover:text-blue-700'>List of Providers</li></NavLink>
-     <NavLink to="#"><li className=' font-medium cursor-pointer  hover:text-blue-700'>Contact Us</li></NavLink>
-     <NavLink to="#"><li className=' font-medium cursor-pointer  hover:text-blue-700'>About Us</li></NavLink>
-     <NavLink to="#"><li className=' font-medium cursor-pointer  hover:text-blue-700'>User Login</li></NavLink>
-     <NavLink to="#"><li className=' font-medium cursor-pointer  hover:text-blue-700'>Admin Login</li></NavLink>
+     <NavLink to="#"><li className='pl-2 font-medium cursor-pointer hover:text-blue-700'>Home</li></NavLink>
+     <NavLink to="#"><li className='pl-2 font-medium cursor-pointer  hover:text-blue-700'>List of Providers</li></NavLink>
+     <NavLink to="#"><li className='pl-2 font-medium cursor-pointer  hover:text-blue-700'>Contact Us</li></NavLink>
+     <NavLink to="#"><li className='pl-2 font-medium cursor-pointer  hover:text-blue-700'>About Us</li></NavLink>
+     <NavLink to="#"><li className='pl-2 font-medium cursor-pointer  hover:text-blue-700'>User Login</li></NavLink>
+     <NavLink to="#"><li className='pl-2 font-medium cursor-pointer  hover:text-blue-700'>Admin Login</li></NavLink>
      </ul>
      </div>
+      </div>
+      <div className=" py-4 bg-gray-400">
+        <p className='text-normal text-center bg-gray-400 text-white font-medium sm:text-lg sm:font-serif'>© Copyright 2022-2023 www.TiffinWala.com All rights reserved. Developed by TiffinWala</p>
       </div>
       
     </>
