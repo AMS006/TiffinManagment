@@ -41,6 +41,7 @@ body{
     padding-top: 1.7px;
     padding-left: 3px;
 }
+
 @media (max-width:550px) {
     .heroImage{
         border-radius: 20px 0px 0px 20px;

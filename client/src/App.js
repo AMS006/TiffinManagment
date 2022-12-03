@@ -5,6 +5,7 @@ import SignInPage from './pages/SignInPage';
 import SignUpPage from './pages/SignUpPage';
 import AllProvidersPage from './pages/AllProviders.page';
 import ProviderPage from './pages/Provider.page';
+import MealPage from './pages/Meal.page';
 function App() {
   return (
     <BrowserRouter>
@@ -14,6 +15,7 @@ function App() {
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/providers" element={<AllProvidersPage />} />
         <Route path='/provider/:_id' element={<ProviderPage />} />
+        <Route path='/meal/:_id' element={<MealPage /> } />
       </Routes>
     </BrowserRouter>
   );

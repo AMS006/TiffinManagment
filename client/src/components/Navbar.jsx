@@ -17,7 +17,7 @@ function NavbarLg({name}){
                 {name ?<ProfileAvatar name={name}/>:
                 <div className='flex items-center gap-2'>
                   <li className='border border-slate-900 text-slate-900 px-2 py-1'><Link to="/signin">Login</Link></li>
-                  <li className="bg-slate-900 text-white px-2 py-1"><Link to="/signup">SignUp</Link></li>
+                  <li className="bg-slate-800 text-white px-2 py-1"><Link to="/signup">SignUp</Link></li>
                 </div>}
             </ul>
         </div>
@@ -54,7 +54,7 @@ function NavbarSm({name}){
         <li><Link>Contact Us</Link></li>
         {!name?<div className='flex flex-col gap-3 items-center'>
           <li className='border border-slate-900 text-slate-900 px-2 py-1'><Link to="/signin">Login</Link></li>
-          <li className="bg-slate-900 text-white px-2 py-1"><Link to="/signup">SignUp</Link></li>
+          <li className="bg-slate-800 text-white px-2 py-1"><Link to="/signup">SignUp</Link></li>
         </div>:""}
       </ul>
     </>

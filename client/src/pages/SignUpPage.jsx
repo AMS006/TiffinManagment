@@ -69,7 +69,7 @@ function SignUpPage() {
                   </div>
                   {!passwordMatch && <small className='text-red-600'>* Password does not match</small>}
                 </div>
-                <div className='bg-slate-900 text-white py-2 shadow rounded-full'>
+                <div className='bg-slate-800 text-white py-2 shadow rounded-full'>
                     <input type="submit" value="SignUp" className='h-full w-full cursor-pointer' />
                 </div>
                 <div className='text-slate-900 font-semibold text-center'>

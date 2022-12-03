@@ -3,41 +3,49 @@ import {Link}  from 'react-router-dom'
 function MealBox() {
     const [meals,setMeals] = useState([
         {
+            _id:"kjdfkjdlkfjlkf",
             name:"Indian Veg Thali",
             img:"https://ik.imagekit.io/curefoods/image/packs/eat/LUNCH_INDIAN_THALI_PARENT/5_mag_web.jpg",
             price:"120"
         },
         {
+            _id:"kjdfkjdlkfjlkf",
             name:"Indian Veg Thali",
             img:"https://ik.imagekit.io/curefoods/image/packs/eat/LUNCH_INDIAN_THALI_PARENT/5_mag_web.jpg",
             price:"120"
         },
         {
+            _id:"kjdfkjdlkfjlkf",
             name:"Indian Veg Thali",
             img:"https://ik.imagekit.io/curefoods/image/packs/eat/LUNCH_INDIAN_THALI_PARENT/5_mag_web.jpg",
             price:"120"
         },
         {
+            _id:"kjdfkjdlkfjlkf",
             name:"Indian Veg Thali",
             img:"https://ik.imagekit.io/curefoods/image/packs/eat/LUNCH_INDIAN_THALI_PARENT/5_mag_web.jpg",
             price:"120"
         },
         {
+            _id:"kjdfkjdlkfjlkf",
             name:"Indian Veg Thali",
             img:"https://ik.imagekit.io/curefoods/image/packs/eat/LUNCH_INDIAN_THALI_PARENT/5_mag_web.jpg",
             price:"120"
         },
         {
+            _id:"kjdfkjdlkfjlkf",
             name:"Indian Veg Thali",
             img:"https://ik.imagekit.io/curefoods/image/packs/eat/LUNCH_INDIAN_THALI_PARENT/5_mag_web.jpg",
             price:"120"
         },
         {
+            _id:"kjdfkjdlkfjlkf",
             name:"Indian Veg Thali",
             img:"https://ik.imagekit.io/curefoods/image/packs/eat/LUNCH_INDIAN_THALI_PARENT/5_mag_web.jpg",
             price:"120"
         },
         {
+            _id:"kjdfkjdlkfjlkf",
             name:"Indian Veg Thali",
             img:"https://ik.imagekit.io/curefoods/image/packs/eat/LUNCH_INDIAN_THALI_PARENT/5_mag_web.jpg",
             price:"120"
@@ -48,7 +56,7 @@ function MealBox() {
         <h1 className="font-bold font-mono text-2xl">All Meal Plans</h1>
         <div className='grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 py-4 gap-6'>
             {meals.map((meal) =>(
-                <Link>
+                <Link to={`/meal/${meal._id}`}>
                     <div className='hover:shadow py-2 '>
                         <div>
                             <img src={meal.img} alt={meal.name} />

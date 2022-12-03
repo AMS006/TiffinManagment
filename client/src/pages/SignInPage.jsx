@@ -36,7 +36,7 @@ function SignInPage() {
                     <span className='px-2 h-full'><GrSecure /></span>
                     <input type="password" value={password} name="password" placeholder='Enter Your password' className='w-full h-full px-2 py-2 border-l focus:outline-none' id="password" required onChange={(e) => setPassword(e.target.value)}/>
                 </div>
-                <div className='bg-slate-900 text-white py-2 shadow rounded-full'>
+                <div className='bg-slate-800 text-white py-2 shadow rounded-full'>
                     <input type="submit" value="SignUp" className='h-full w-full cursor-pointer' />
                 </div>
                 <div className='text-slate-900 font-semibold text-center'>
