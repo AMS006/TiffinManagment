@@ -12,8 +12,8 @@ function NavbarLg({name}){
             </Link>
             <ul className='gap-4 flex items-center font-semibold '>
                 <li><Link to="/providers">Tiffin Providers</Link></li>
-                <li><Link>About Us</Link></li>
-                <li><Link>Contact Us</Link></li>
+                <li><Link to="/aboutus">About Us</Link></li>
+                <li><Link to="/contactus">Contact Us</Link></li>
                 {name ?<ProfileAvatar name={name}/>:
                 <div className='flex items-center gap-2'>
                   <li className='border border-slate-900 text-slate-900 px-2 py-1'><Link to="/signin">Login</Link></li>
