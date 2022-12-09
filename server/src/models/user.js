@@ -9,6 +9,9 @@ const userSchema = new mongoose.Schema({
         min:3,
         max:30
     },
+    address:{
+        type:String,
+    },
     email:{
         type:String,
         required:true,
@@ -19,15 +22,9 @@ const userSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    phoneNo:{
+    phoneNumber:{
         type:Number,
-        min:10,
-        max:10
-    },
-    role:{
-        type:String,
-        enum:["user","dealer"],
-        default:"user"
+        min:10
     },
     profilePic:{type:String}
 

@@ -1,14 +1,24 @@
-const generateToken = (res,statusCode,user) =>{
+const generateToken = (res,statusCode,user,isUser) =>{
     try{
-    const token = user.generateJwtToken();
-    const {name,email,role,_id} =  user
+        let token = ''
+        let text = ''
+        if(isUser){
+            token = user.generateJwtToken(); // Generating token for user
+            text = 'userToken'
+        }
+        else{
+            token = user.generateJwtToken(); // Generating token for provider
+            text = 'providerToken'
+        }
+    
     const options = {
         expires : new Date(
             Date.now() + 5 * 24 * 60 * 60 * 1000
         ),
+        secure:false,
         httpOnly:true
     }
-    res.cookie('token',token).json({user:{name,email,role,_id}, token})
+       return res.status(statusCode).cookie(text,token, options).json({success:true, user})
     }catch(error){
         return res.status(500).json({message:error.message});
     }
