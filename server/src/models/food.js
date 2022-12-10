@@ -13,6 +13,10 @@ const foodSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref:'providers'
     },
+    // price:{
+    //     type:Number,
+    //     required:true
+    // },
     menu:[{
         name:{
             type:String,

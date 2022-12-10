@@ -6,12 +6,10 @@ const cors = require('cors');
 const user = require('./routes/User');
 const provider = require('./routes/provider');
 const food = require ('./routes/foods')
+const order = require('./routes/order')
 const app = express()
 env.config();
-const corsOptions = {
-    origin:true,
-    credentials:true
-}
+
 app.use(cors({
     origin: 'http://localhost:3000', 
     methods: ['GET', 'PUT', 'POST','DELETE'], 
@@ -33,6 +31,7 @@ mongoose.connect(process.env.MONGODB_CONNECTION,{
 app.use('/api/v1/user', user);
 app.use('/api/v1/provider',provider)
 app.use('/api/v1/food',food)
+app.user('/api/v1/order',order)
 
 app.listen(process.env.PORT,()=>{
     console.log("Server is Running on port " + process.env.PORT)
