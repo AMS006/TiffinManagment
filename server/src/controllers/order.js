@@ -6,10 +6,12 @@ exports.addOrder = async(req,res) =>{
         if(!user)
             return res.status(400).json({message:"Plzz Login to make orders"});
         const data = req.body;
-        
-        const order = await orderModel.create({data,user});
+        // console.log(data);
+        const obj = {user,...data}
+        // console.log(obj);
+        const order = await orderModel.create(obj);
 
-        return res.status(200).json({order})
+        return res.status(200).json({order});
     } catch (error) {
         return res.status(500).json({message:error.message});
     }
@@ -20,8 +22,7 @@ exports.getUserOrders = async(req,res) =>{
         if(!user)
             return res.status(400).json({message:"Plzz Login to fetch orders"});
         
-        const orders = orderModel.find({user})
-
+        const orders = await orderModel.find({user}).populate("address")
         if(!orders)
             return res.status(404).json({message:"No orders Found"});
         
@@ -36,7 +37,7 @@ exports.getProvidersOrders = async(req,res) =>{
         if(!provider)
             return res.status(400).json({message:"Plzz Login to fetch orders"});
         
-        const orders = orderModel.find({provider})
+        const orders = await orderModel.find({provider}).populate("user food address")
 
         if(!orders)
             return res.status(404).json({message:"No orders Found"});
@@ -44,5 +45,18 @@ exports.getProvidersOrders = async(req,res) =>{
         return res.status(200).json({orders});
     } catch (error) {
         return res.status(500).json({message:error.message});
+    }
+}
+exports.deleteOrder = async(req,res)=>{
+    try {
+        const {_id} = req.body;
+        if(!_id)
+            return res.status(404).json({message:"Invalid Request"});
+        
+        await orderModel.findByIdAndDelete(_id);
+
+        return res.status(200).json({message:"Order Deleted Successfully"});
+    } catch (error) {
+        return res.status(500).json({message:error.message})
     }
 }

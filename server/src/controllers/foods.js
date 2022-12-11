@@ -12,7 +12,7 @@ exports.addFood = async(req,res) =>{
     }
 }
 
-exports.getAllFoods = async(req,res) =>{
+exports.getAllFoodsOfProvider = async(req,res) =>{
     try {
         const {_id} = req.body;
         const foods = await foodModel.find({provider:_id});

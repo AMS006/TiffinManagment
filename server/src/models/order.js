@@ -16,8 +16,12 @@ const orderSchema = new mongoose.Schema({
     },
     selectedPlan:{
         type:String,
-        enum:["Monthly","Weekly","OneDay"],
+        enum:["Month","Week","OneDay"],
         required:true
+    },
+    address:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'userAddress'
     },
     totalAmount:{
         type:Number,
@@ -33,9 +37,10 @@ const orderSchema = new mongoose.Schema({
     },
     orderStatus:{
         type:String,
-        enum:["Ordered","Success","Cancelled"],
+        enum:["Ordered","Delivered","Cancelled"],
         default:"Ordered"
     }
+    
 },
 {timestamps:true}
 )
