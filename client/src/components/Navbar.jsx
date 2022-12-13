@@ -3,6 +3,7 @@ import {Link} from'react-router-dom'
 import {FaBars} from 'react-icons/fa'
 import { useState } from 'react'
 import ProfileAvatar from './Avatar'
+import { useSelector } from 'react-redux'
 function NavbarLg({name}){
   return(
     <>
@@ -61,9 +62,7 @@ function NavbarSm({name}){
   )
 }
 function Navbar() {
-  const user = {
-    // name:"Anas"
-  }
+  const user = useSelector((state) => state.user.user);
   return (
     <>
       <NavbarLg name={user?.name}/>

@@ -1,13 +1,18 @@
 const bcrypt = require('bcrypt')
 const providerModel = require('../models/provider');
 const userModel = require('../models/user')
-const foodModel = require('../models/food')
 const generateToken = require('../utils/generateToken');
-
+const uploads = require('../utils/cloudinaryUpload');
 exports.registerProvider = async(req,res) =>{
     try {
         const {name,email,password,phoneNumber,address} = req.body;
         const providerExists = await providerModel.findOne({email})
+        let providerLogo = "";
+        if(req.file){
+            const location = req.file.path;
+            const result = await uploads(location);
+            providerLogo = result.url;
+        }
 
         // Checking If Proiver Already Exist With Entered Email
         if(providerExists)
@@ -17,8 +22,17 @@ exports.registerProvider = async(req,res) =>{
         const isUser = await userModel.findOne({email});
         if(isUser)
             return res.status(400).json({message:"Invalid email! Email exists as user"});
-        const provider = await providerModel.create({name,email,password,phoneNumber,address});
-        generateToken(res,201,provider,false)
+        const data = {
+            name,
+            email,
+            password,
+            phoneNumber,
+            address,
+            providerLogo
+        }
+        // const provider = await providerModel.create();
+        // generateToken(res,201,provider,false)
+        return res.status(200).json({data});
     }catch (error) {
         return res.status(500).json({message:error})
     }

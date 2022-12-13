@@ -9,14 +9,14 @@ const foodSchema = new mongoose.Schema({
         type:Boolean,
         required:true
     },
+    price:{
+        type:Number,
+        required:true
+    },
     provider:{
         type: mongoose.Schema.Types.ObjectId,
         ref:'providers'
     },
-    // price:{
-    //     type:Number,
-    //     required:true
-    // },
     menu:[{
         name:{
             type:String,
@@ -35,10 +35,10 @@ const foodSchema = new mongoose.Schema({
             required:true,
             trim:true
         },
-        price:{
-            type:Number,
-            required:true
-        },
+        // price:{
+        //     type:Number,
+        //     required:true
+        // },
     }]
 })
 

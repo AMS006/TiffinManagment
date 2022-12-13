@@ -5,9 +5,9 @@
 body{
     background: #ffff;
     color: #2e2c35;
-    overflow-x: hidden;
-    padding: 0px;
-    margin: 0px;
+}
+#root{
+    overflow:auto;
 }
 .swiper-pagination-bullet-active{
     background: #0f172a !important;

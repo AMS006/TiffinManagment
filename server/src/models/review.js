@@ -2,10 +2,6 @@ const mongoose = require("mongoose")
 const provider = require("./provider")
 
 const reviewSchema = new mongoose.Schema({
-   provider:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"providers"
-   },
    review:[
         {
             user:{

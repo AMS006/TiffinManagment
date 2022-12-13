@@ -34,17 +34,11 @@ const providerSchema = new mongoose.Schema({
         type:Boolean,
         default:false
     },
-    reviews:[
-        {
-            user:{type:mongoose.Schema.Types.ObjectId, ref:'users'},
-            rating:{type:Number, required:true},
-            message:{type:String, required:true}
-        }
-    ],
-    image:{
-        type:String,
+    reviews:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"reviews"
     },
-    backgroundImage:{
+    providerLogo:{
         type:String
     }
 

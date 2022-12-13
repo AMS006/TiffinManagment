@@ -1,10 +1,25 @@
-const foodModel = require('../models/food')
+const foodModel = require('../models/food');
+const uploads = require('../utils/cloudinaryUpload');
 exports.addFood = async(req,res) =>{
     try {
-        const {name,menu,isVeg} = req.body;
+        const {name,menu,isVeg,price} = req.body;
         let provider = req.provider._id;
-
-        const food = await foodModel.create({name,menu,provider,isVeg});
+        const arrayData = Object.values(menu);
+        if(req.files.length > 0){
+            for(let i = 0;i<req.files.length;i++){
+                const location = req.files[i].path;
+                const result = await uploads(location);
+                arrayData[i].img = result.url
+            }
+        }
+        const updatedData = {
+            name,
+            isVeg,
+            price,
+            provider,
+            menu:arrayData
+        }
+        const food = await foodModel.create(updatedData);
 
         return res.status(200).json({food});
     } catch (error) {
