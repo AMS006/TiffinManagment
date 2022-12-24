@@ -26,12 +26,22 @@ function Footer() {
       <div className="links order-2  md:pt-4 md:pl-5 lg:flex flex-col items-center">
      <ul className='pb-3 '>
      <h1 className='font-bold text-2xl py-2 '>Links</h1>
+<<<<<<< HEAD
      <Link to="#"><li className='pl-2 font-medium cursor-pointer hover:text-blue-700'>Home</li></Link>
      <Link to="#"><li className='pl-2 font-medium cursor-pointer  hover:text-blue-700'>List of Providers</li></Link>
      <Link to="#"><li className='pl-2 font-medium cursor-pointer  hover:text-blue-700'>Contact Us</li></Link>
      <Link to="#"><li className='pl-2 font-medium cursor-pointer  hover:text-blue-700'>About Us</li></Link>
      <Link to="/registerProvider"><li className='pl-2 font-medium cursor-pointer  hover:text-blue-700'>Provider Registration</li></Link>
      <Link to="/loginProvider"><li className='pl-2 font-medium cursor-pointer  hover:text-blue-700'>Provider Login</li></Link>
+=======
+     <NavLink to="#"><li className='pl-2 font-medium cursor-pointer hover:text-blue-700'>Home</li></NavLink>
+     <NavLink to="#"><li className='pl-2 font-medium cursor-pointer  hover:text-blue-700'>List of Providers</li></NavLink>
+     <NavLink to="#"><li className='pl-2 font-medium cursor-pointer  hover:text-blue-700'>Contact Us</li></NavLink>
+     <NavLink to="#"><li className='pl-2 font-medium cursor-pointer  hover:text-blue-700'>About Us</li></NavLink>
+     <NavLink to="#"><li className='pl-2 font-medium cursor-pointer  hover:text-blue-700'>User Login</li></NavLink>
+     <NavLink to="#"><li className='pl-2 font-medium cursor-pointer  hover:text-blue-700'>Admin Login</li></NavLink>
+     <NavLink to="#"><li className='pl-2 font-medium cursor-pointer  hover:text-blue-700'>Admin SignUp</li></NavLink>
+>>>>>>> 33f200ae12c9246de68f9d3b9c5ad1b69fe69a8b
      </ul>
      </div>
       </div>

@@ -3,8 +3,10 @@ import img1 from '../images/chooseus-1.jpg';
 import img2 from '../images/chooseus-2.jpg';
 import img3 from '../images/chooseus-3.jpg';
 import img4 from '../images/chooseus-5.jpg';
+// import Fade from 'react-reveal/Fade';
 function ChooseUs() {
   return (
+
     <div className=" mx-auto py-5 bg-gray-100 " style={{ fontFamily: 'Anek Devanagari' }}>
       <h1 className="text-black font-mono text-center text-xl sm:text-3xl">WHY CHOOSE US?</h1>
 
@@ -29,6 +31,7 @@ function ChooseUs() {
 
 
     </div>
+
   )
 }
 
