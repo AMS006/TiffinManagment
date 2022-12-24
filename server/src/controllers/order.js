@@ -6,9 +6,7 @@ exports.addOrder = async(req,res) =>{
         if(!user)
             return res.status(400).json({message:"Plzz Login to make orders"});
         const data = req.body;
-        // console.log(data);
         const obj = {user,...data}
-        // console.log(obj);
         const order = await orderModel.create(obj);
 
         return res.status(200).json({order});

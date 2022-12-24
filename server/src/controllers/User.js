@@ -36,7 +36,7 @@ exports.loginUser = async(req,res) =>{
             return res.status(404).json({message:"Invalid Email or Password"});
         const passwordMatch = await bcrypt.compare(password,user.password)
         if(!passwordMatch)
-            return res.status(400).jons({message:"Invalid Email or Password"})
+            return res.status(400).json({message:"Invalid Email or Password"})
         generateToken(res,200,user,true);
     } catch (error) {
         return res.status(500).json({message:error.message})
@@ -63,6 +63,6 @@ exports.getUserDetails = async(req,res) =>{
         return res.status(404).json({message:"No user found"});
       return res.status(200).json({user});
     } catch (error) {
-      return res.status(500).json({success:false,message:error.message})
+      return res.status(500).json({success:false})
     }
   }

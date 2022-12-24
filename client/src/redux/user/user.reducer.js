@@ -11,10 +11,12 @@ const userSlice = createSlice({
     reducers:{
         userRequest:(state) =>{
             state.loading = true
+            state.error = ""
         },
         userSuccess:(state,action)=>{
             state.user = action.payload.user
             state.loading = false
+            state.error = ""
         },
         userFail:(state,action)=>{
             state.user = undefined
@@ -24,6 +26,7 @@ const userSlice = createSlice({
         userLogout:(state) =>{
             state.user = undefined
             state.loading = false
+            state.error = ""
         }
     }
 })

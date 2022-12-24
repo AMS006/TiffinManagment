@@ -13,7 +13,6 @@ exports.registerProvider = async(req,res) =>{
             const result = await uploads(location);
             providerLogo = result.url;
         }
-
         // Checking If Proiver Already Exist With Entered Email
         if(providerExists)
             return res.status(400).json({message:"Provider Already Exists"});
@@ -30,10 +29,10 @@ exports.registerProvider = async(req,res) =>{
             address,
             providerLogo
         }
-        // const provider = await providerModel.create();
-        // generateToken(res,201,provider,false)
-        return res.status(200).json({data});
-    }catch (error) {
+        const provider = await providerModel.create(data);
+        generateToken(res,201,provider,false)
+        return res.status(200).json({});
+    }catch (error){
         return res.status(500).json({message:error})
     }
 }
@@ -51,6 +50,19 @@ exports.loginProvider = async(req,res) =>{
         return res.status(500).json({message:error.message})
     }
 }
+exports.getProviderDetails = async(req,res) =>{
+    try {
+        if(!req?.provider){
+            return res.status(404).json({message:"No provider Found"});
+        }
+        const provider = await providerModel.findOne({_id:req.provider._id})
+        if(!provider)
+            return res.status(404).json({message:"No provider Found"});
+        return res.status(200).json({provider});
+    } catch (error) {
+        return res.status(500).json({});
+    }
+}
 exports.logoutProvider = async(req,res) =>{
     try {
         res.cookie('providerToken',null,{
@@ -63,14 +75,14 @@ exports.logoutProvider = async(req,res) =>{
     }
 }
 exports.getAllProviders = async(req,res) =>{
-    try {
-        const provider = await providerModel.find({isAuthorized:true});
+    try{
+        const allProviders = await providerModel.find({isAuthorized:true});
 
-        if(!provider)
+        if(!allProviders.length === 0)
             return res.status(404).json({message:"No provider found"});
-
-        return res.status(200).json({provider});
-    } catch (error) {
+        
+        return res.status(200).json({allProviders});
+    }catch (error){
         return res.status(500).json({message:error.message});
     }
 }

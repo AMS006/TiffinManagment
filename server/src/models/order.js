@@ -14,14 +14,20 @@ const orderSchema = new mongoose.Schema({
         ref:"foods",
         required:true
     },
-    selectedPlan:{
+    date:{
         type:String,
-        enum:["Month","Week","OneDay"],
         required:true
     },
+    time:{
+        type:String,
+    },
     address:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:'userAddress'
+        type:String,
+        required:true
+    },
+    quantity:{
+        type:Number,
+        required:true
     },
     totalAmount:{
         type:Number,
@@ -29,7 +35,8 @@ const orderSchema = new mongoose.Schema({
     },
     paymentMode:{
         type:String,
-        enum:["COD", "Online"]
+        enum:["COD", "Online"],
+        default:"Online"
     },
     paymentStatus:{
         type:String,
@@ -37,7 +44,7 @@ const orderSchema = new mongoose.Schema({
     },
     orderStatus:{
         type:String,
-        enum:["Ordered","Delivered","Cancelled"],
+        enum:["Ordered","Confirmed","Cancelled"],
         default:"Ordered"
     }
     

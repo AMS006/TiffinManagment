@@ -17,29 +17,12 @@ const foodSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref:'providers'
     },
-    menu:[{
-        name:{
-            type:String,
-            required:true,
-            trim:true
-        },
-        day:{
-            type:String,
-            required:true
-        },
-        img:{
-            type:String,
-        },
-        description:{
-            type:String,
-            required:true,
-            trim:true
-        },
-        // price:{
-        //     type:Number,
-        //     required:true
-        // },
-    }]
+    image:{
+        type:String
+    },
+    description:{
+        type:String
+    }
 })
 
 module.exports = mongoose.model('foods',foodSchema)

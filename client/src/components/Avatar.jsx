@@ -10,6 +10,7 @@ import {GiShoppingBag} from 'react-icons/gi'
 import {FiLogOut} from 'react-icons/fi'
 import { useDispatch } from 'react-redux';
 import { logout } from '../redux/user/user.action';
+import { useNavigate } from 'react-router-dom';
 
 function ProfileAvatar({name}) {
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -20,9 +21,11 @@ function ProfileAvatar({name}) {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   const handleLogout = (e) =>{
     dispatch(logout());
+    navigate('/')
   }
   return (
     <React.Fragment>

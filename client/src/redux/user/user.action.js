@@ -19,7 +19,6 @@ export const login = (user) => async(dispatch) =>{
 export const signUp = (user) => async(dispatch) =>{
     try {
         dispatch(userRequest());
-        console.log(user);
         const config = { headers: { "Content-Type": "application/json" } };
         const userData = await axios({
             method:"POST",
@@ -36,9 +35,11 @@ export const signUp = (user) => async(dispatch) =>{
 export const logout = () => async(dispatch) =>{
     try {
         dispatch(userRequest());
-        const userData = await axios({
+        const config = { headers: { "Content-Type": "application/json" } };
+        await axios({
             method:"GET",
             url:"http://localhost:4000/api/v1/user/logout",
+            config
         })
         return dispatch(userLogout())
     }catch (error) {
@@ -52,7 +53,6 @@ export const getUserDetails = () => async(dispatch) =>{
             method:"GET",
             url:"http://localhost:4000/api/v1/user/me",
         })
-        // console.log(userData.user);
         return dispatch(userSuccess(userData.data))
     }catch (error) {
         return dispatch(userFail(error.response.data.message));

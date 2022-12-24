@@ -1,5 +1,5 @@
 const express = require('express');
-const { addFood, getFoodById, getAllFoodsOfProvider } = require('../controllers/foods');
+const { addFood, getFoodById, getAllFoodsOfProvider, deleteFood } = require('../controllers/foods');
 const { isProvider } = require('../middleware/isProvider');
 const router = express.Router()
 const multer = require('multer')
@@ -12,9 +12,11 @@ const storage = multer.diskStorage({
   });
 const upload = multer({storage});
 
-router.post('/', isProvider,upload.array('menuImages',10), addFood)
+router.post('/', isProvider,upload.single('foodImage'), addFood)
 
-router.get('/',getAllFoodsOfProvider)
+router.delete('/:_id', isProvider, deleteFood)
+
+router.get('/provider/:_id',getAllFoodsOfProvider)
 
 router.get('/:_id', getFoodById);
 

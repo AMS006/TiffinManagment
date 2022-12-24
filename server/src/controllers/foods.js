@@ -2,22 +2,22 @@ const foodModel = require('../models/food');
 const uploads = require('../utils/cloudinaryUpload');
 exports.addFood = async(req,res) =>{
     try {
-        const {name,menu,isVeg,price} = req.body;
+        const {name,isVeg,price,description} = req.body;
         let provider = req.provider._id;
-        const arrayData = Object.values(menu);
-        if(req.files.length > 0){
-            for(let i = 0;i<req.files.length;i++){
-                const location = req.files[i].path;
-                const result = await uploads(location);
-                arrayData[i].img = result.url
-            }
+        let image = ""
+        console.log(req.body);
+        if(req.file){
+            const location = req.file.path;
+            const result = await uploads(location);
+            image = result.url
         }
         const updatedData = {
             name,
             isVeg,
             price,
             provider,
-            menu:arrayData
+            image,
+            description
         }
         const food = await foodModel.create(updatedData);
 
@@ -29,7 +29,7 @@ exports.addFood = async(req,res) =>{
 
 exports.getAllFoodsOfProvider = async(req,res) =>{
     try {
-        const {_id} = req.body;
+        const {_id} = req.params;
         const foods = await foodModel.find({provider:_id});
 
         if(!foods)
@@ -52,6 +52,20 @@ exports.getFoodById = async(req,res) =>{
             return res.status(404).json({message:"No food Found"});
 
         return res.status(200).json({food})
+    } catch (error) {
+        return res.status(500).json({message:error.message});
+    }
+}
+exports.deleteFood = async(req,res) =>{
+    try {
+        const {_id} = req.params;
+
+        if(!_id)
+            return res.status(404).json({message:"Invalid Request"})
+        
+        const food = await foodModel.findByIdAndDelete(_id);
+
+        return res.status(201).json({food});
     } catch (error) {
         return res.status(500).json({message:error.message});
     }

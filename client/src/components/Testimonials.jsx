@@ -60,8 +60,8 @@ function Testimonials() {
         className="mySwiper"
       >
         
-            {slidesData.map((data)=> (
-                <SwiperSlide>
+            {slidesData.map((data,index)=> (
+                <SwiperSlide key={index}>
                     <TestimonialCard name={data.name} img={data.img} rating={data.rating} reviewText={data.reviewText} />
                 </SwiperSlide>
             ))}

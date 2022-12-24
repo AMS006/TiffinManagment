@@ -3,8 +3,7 @@ const jwt = require('jsonwebtoken')
 exports.isProvider = async (req,res,next) =>{    
     try{
         const {providerToken} = req.cookies;
-        if(!providerToken) return res.status(500).json({success:false, message:"Plzz login to access this resource"});
-    
+        if(!providerToken) return res.status(500).json({success:false });
         const decodeData = jwt.verify(providerToken, process.env.SECRET_KEY);
         req.provider = await providerModel.findById(decodeData.id);
         next();

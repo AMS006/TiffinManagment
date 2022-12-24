@@ -1,38 +1,99 @@
-import React,{useState} from 'react'
-
+import React from 'react'
+import { useState } from 'react'
+import { useSelector } from 'react-redux'
+import {MdEmail,MdDateRange} from 'react-icons/md'
+import {RiIncreaseDecreaseLine} from 'react-icons/ri'
+import {FiUser,FiPhone,FiClock} from 'react-icons/fi'
+import { useEffect } from 'react'
 function MealSubscription() {
-    const [mealData,setMealDate] = useState({
-        name:"Indian Veg Thali",
-        price:"120",
-        isVeg:true,
-    })
-    const [totalPrice,setTotalPrice] = useState(mealData.price * 28);
-    const [totalDays,setTotalDays] = useState(28);
-
-    const toggleTotalPrice = (days) =>{
-
-      setTotalDays(days);
-      setTotalPrice(days * mealData.price);
+  const user = useSelector((state) => state.user.user)
+  const [name,setName] = useState();
+  const [email,setEmail] = useState();
+  const [address,setAddress] = useState();
+  const [mobileNumber, setMobileNumber] = useState();
+  const [quantity,setQuantity] = useState(1);
+  const [date,setDate] = useState("");
+  const [time,setTime] = useState("")
+  useEffect(()=>{
+    if(user){
+      setName(user.name)
+      setEmail(user.email)
+      setMobileNumber(user.phoneNumber)
+    }else{
+      setName("")
+      setEmail("")
     }
-
+  },[user])
+  const food = useSelector((state) => state.foods.food)
+  const handleSubmit = (e) =>{
+    e.preventDefault()
+    let totalAmount = food.price * quantity
+    const data = {
+      name,
+      email,
+      mobileNumber,
+      quantity,
+      address,
+      time,
+      date,
+      totalAmount
+    }
+    console.log(data);
+  }
   return (
-    <div className='flex flex-col gap-6 lg:px-8 md:px-4 px-2'>
-        <h2 className='font-bold text-2xl'>{mealData.name}</h2>
-
-        <div className='flex items-center gap-3'>
-          <div className='bg-slate-800 text-white px-2 py-5 rounded-lg flex flex-col items-center justify-center lg:w-28 w-44 '>
-            <h4 className='font-semibold lg:text-xl text-lg'>₹{totalPrice}</h4>
-            <p>for {totalDays} days</p>
+    <div className=''>
+        <form action="" className='flex flex-col gap-2' onSubmit={handleSubmit}>
+          <h2 className='font-semibold text-xl text-center md:py-0 py-4'>Order Your Tiffin Know</h2>
+          <div>
+            <label htmlFor="name" className='font-semibold'>Name</label>
+            <div className='flex items-center border bg-white w-full'>
+              <span className='px-2 h-full'><FiUser /></span>
+              <input type="text" value={name} name="name" placeholder='Enter Your Name' className='w-full h-full px-2 py-2 border-l focus:outline-none' id="name" required onChange={(e) => setName(e.target.value)}/>
+            </div>
           </div>
-          <div className='shadow-lg text-white py-10 flex gap-3 flex-wrap'>
-            <button onClick={() => toggleTotalPrice(28)} className={`${totalDays === 28?'bg-slate-800   text-white':"text-slate-900"} w-20  rounded  py-1 border border-slate-900`}>Monthly</button>
-            <button onClick={() => toggleTotalPrice(7)} className={`${totalDays === 7?'bg-slate-800  text-white':"text-slate-900"} w-20 rounded  py-1 border border-slate-900`}>Weekly</button>
-            <button onClick={() => toggleTotalPrice(1)} className={`${totalDays === 1?'bg-slate-800  text-white':"text-slate-900"} w-20 rounded  py-1 border border-slate-900`}>Today</button>
+          <div>
+            <label htmlFor="email" className='font-semibold'>Email</label>
+            <div className='flex items-center border bg-white w-full'>
+              <span className='px-2 h-full'><MdEmail /></span>
+              <input type="text" value={email} name="email" placeholder='Enter Your Email' className='w-full h-full px-2 py-2 border-l focus:outline-none' id="email" required onChange={(e) => setEmail(e.target.value)}/>
+            </div>
           </div>
-        </div>
-        <div className='w-full px-4'>
-          <button className='w-full bg-slate-800 py-2 rounded text-white font-semibold '>Subscribe Meal Plan</button>
-        </div>
+          <div>
+            <label htmlFor="phone" className='font-semibold'>Mobile Number</label>
+            <div className='flex items-center border bg-white w-full'>
+              <span className='px-2 h-full'><FiPhone /></span>
+              <input type="tel" value={mobileNumber} name="phone" placeholder='Enter Your Mobile Number' className='w-full h-full px-2 py-2 border-l focus:outline-none' id="phone" required onChange={(e) => setMobileNumber(e.target.value)}/>
+            </div>
+          </div>
+          <div>
+            <label htmlFor="quantity" className='font-semibold'>Quantity</label>
+            <div className='flex items-center border bg-white w-full'>
+              <span className='px-2 h-full'><RiIncreaseDecreaseLine /></span>
+              <input type="number" min={1} value={quantity} name="phone" placeholder='Enter Quantity' className='w-full h-full px-2 py-2 border-l focus:outline-none' id="quantity" required onChange={(e) => setQuantity(e.target.value)}/>
+            </div>
+          </div>
+          <div>
+            <label htmlFor="date" className='font-semibold'>Date</label>
+            <div className='flex items-center border bg-white w-full'>
+              <span className='px-2 h-full'><MdDateRange /></span>
+              <input type="date" value={date} name="phone" placeholder='Select Date to deliver' className='w-full h-full px-2 py-2 border-l focus:outline-none' id="date" required onChange={(e) => setDate(e.target.value)}/>
+            </div>
+          </div>
+          <div>
+            <label htmlFor="time" className='font-semibold'>Time</label>
+            <div className='flex items-center border bg-white w-full'>
+              <span className='px-2 h-full'><FiClock /></span>
+              <input type="time" value={time} name="phone" placeholder='Select Time to deliver' className='w-full h-full px-2 py-2 border-l focus:outline-none' id="time" required onChange={(e) => setTime(e.target.value)}/>
+            </div>
+          </div>
+          <div className=''>
+            <label htmlFor="address" className='font-semibold'>Address</label>
+            <textarea type="time" value={address} name="address" rows={4} placeholder='Enter Your Address' className='w-full h-full px-2 py-2 my-2 border focus:outline-none' id="address" required onChange={(e) => setAddress(e.target.value)}/>
+          </div>
+          <div>
+            <input type="submit" value="Order Meal" className='bg-slate-900 text-white rounded px-3 py-2 cursor-pointer w-full'/>
+          </div>
+        </form>
     </div>
   )
 }

@@ -12,7 +12,7 @@ function NavbarLg({name}){
                 <h1 className='font-bold text-xl'>Name</h1>
             </Link>
             <ul className='gap-4 flex items-center font-semibold '>
-                <li><Link to="/providers">Tiffin Providers</Link></li>
+                <li><Link to="/provider">Tiffin Providers</Link></li>
                 <li><Link>About Us</Link></li>
                 <li><Link>Contact Us</Link></li>
                 {name ?<ProfileAvatar name={name}/>:
@@ -50,7 +50,7 @@ function NavbarSm({name}){
             </div>
       </div>
        <ul className={`gap-3 flex flex-col items-center absolute z-10 font-semibold h-64 transition ease-in-out duration-500  py-3 w-full ${open?'translate-x-0':'-translate-x-full'}`} style={{backgroundColor:'#eef2f2'}}>
-        <li><Link to="/providers">Tiffin Providers</Link></li>
+        <li><Link to="/provider">Tiffin Providers</Link></li>
         <li><Link>About Us</Link></li>
         <li><Link>Contact Us</Link></li>
         {!name?<div className='flex flex-col gap-3 items-center'>

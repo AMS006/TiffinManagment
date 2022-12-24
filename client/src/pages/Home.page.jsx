@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import ChooseUs from '../components/ChooseUs'
 import HeroSlider from '../components/HeroSlider'
 import Info from '../components/Info'

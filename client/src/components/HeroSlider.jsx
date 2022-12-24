@@ -40,8 +40,8 @@ function HeroSliderLg(){
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper"
       >
-        {slidesData.map((data)=> (
-            <SwiperSlide>
+        {slidesData.map((data,index)=> (
+            <SwiperSlide key={index}>
                 <HeroSliderCard title={data.title} img={data.img} />
             </SwiperSlide>
         ))}
@@ -92,8 +92,8 @@ function HeroSlider() {
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper"
       >
-        {slidesData.map((data)=> (
-            <SwiperSlide>
+        {slidesData.map((data,index)=> (
+            <SwiperSlide key={index}>
                 <HeroSliderCard title={data.title} img={data.img} />
             </SwiperSlide>
         ))}

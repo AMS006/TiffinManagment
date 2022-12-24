@@ -9,6 +9,7 @@ const food = require ('./routes/foods')
 const order = require('./routes/order')
 const address = require('./routes/address');
 const review  = require('./routes/review')
+const initialData = require('./routes/initialData')
 
 const app = express()
 env.config();
@@ -37,7 +38,7 @@ app.use('/api/v1/food',food)
 app.use('/api/v1/order',order)
 app.use('/api/v1/address',address);
 app.use('/api/v1/review',review);
-
+app.use('/api/v1/initialData',initialData)
 app.listen(process.env.PORT,()=>{
     console.log("Server is Running on port " + process.env.PORT)
 })
