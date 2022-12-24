@@ -1,3 +1,4 @@
+import React ,{useEffect} from 'react'
 import './App.css';
 import {BrowserRouter,Routes,Route} from 'react-router-dom'
 import HomePage from './pages/Home.page';
@@ -8,7 +9,13 @@ import ProviderPage from './pages/Provider.page';
 import ContactUs from './pages/ContactUsPage';
 import Aboutus from '../src/pages/AboutUspage';
 import MealPage from './pages/Meal.page';
+import { useDispatch } from 'react-redux';
+import { getUserDetails } from './redux/user/user.action';
 function App() {
+  const dispatch = useDispatch()
+  useEffect(() =>{
+    dispatch(getUserDetails())
+  },[dispatch]);
   return (
     <BrowserRouter>
       <Routes>

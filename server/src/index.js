@@ -1,24 +1,25 @@
 const express = require('express')
 const env = require('dotenv')
 const mongoose = require('mongoose')
-const user = require('./routes/User');
 const cookieParser = require('cookie-parser')
-const cors = require('cors')
+const cors = require('cors');
+const user = require('./routes/User');
+const provider = require('./routes/provider');
+const food = require ('./routes/foods')
+const order = require('./routes/order')
+const address = require('./routes/address');
+const review  = require('./routes/review')
+
 const app = express()
-const bcrypt = require('bcrypt')
-const userModel = require('./models/user');
 env.config();
-const corsOptions = {
-    origin:true,
-    credentials:true
-}
+
 app.use(cors({
     origin: 'http://localhost:3000', 
-      methods: ['GET', 'PUT', 'POST'], 
-      allowedHeaders: ['Content-Type', 'Authorization', 'x-csrf-token'], 
-      credentials: true, 
-      maxAge: 5000, 
-      exposedHeaders: ['*', 'Authorization' ] 
+    methods: ['GET', 'PUT', 'POST','DELETE'], 
+    allowedHeaders: ['Content-Type', 'Authorization', 'x-csrf-token'], 
+    credentials: true, 
+    maxAge: 5000, 
+    exposedHeaders: ['*', 'Authorization' ] 
 }))
 app.use(express.json())
 app.use(cookieParser())
@@ -30,20 +31,13 @@ mongoose.connect(process.env.MONGODB_CONNECTION,{
     console.log("DataBase Connected")
 })
 
-app.use('/api/v1/user', user)
-app.get('/token',function (req,res){
-    // const {email, password} = req.body;
-    //     const user = await userModel.findOne({email});
-    //     if(!user)
-    //         return res.status(404).json({message:"Invalid Email or Password"});
-    //     const passwordMatch = await bcrypt.compare(password,user.password)
-    //     if(!passwordMatch)
-    //         return res.status(400).jons({message:"Invalid Email or Password"})
-        return res.cookie('token',"jkjklljlkjjlk",{
-            expires: new Date(Date.now() + (3600 * 1000 * 24 * 180 * 1)), //second min hour days year
-            httpOnly: true, 
-        }).json({user:"Anas"})
-})
+app.use('/api/v1/user', user);
+app.use('/api/v1/provider',provider)
+app.use('/api/v1/food',food)
+app.use('/api/v1/order',order)
+app.use('/api/v1/address',address);
+app.use('/api/v1/review',review);
+
 app.listen(process.env.PORT,()=>{
     console.log("Server is Running on port " + process.env.PORT)
 })

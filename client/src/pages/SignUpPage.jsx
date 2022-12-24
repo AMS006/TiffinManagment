@@ -5,25 +5,36 @@ import {MdEmail} from 'react-icons/md'
 import {GrSecure} from 'react-icons/gr'
 import {FiUser,FiPhone} from 'react-icons/fi'
 import { useState } from 'react'
+import {useDispatch} from 'react-redux'
+import { signUp } from '../redux/user/user.action'
 function SignUpPage() {
   const [name,setName] = useState("")
   const [email,setEmail] = useState("")
   const [password,setPassword] = useState("")
   const [confirmPassword,setConfirmPassword] = useState("")
-  const [phoneNum,setPhoneNum] = useState("")
+  const [phoneNumber,setPhoneNumber] = useState("")
   const [passwordMatch,setPasswordMatch] = useState(true)
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const handleSubmit = (e) =>{
     e.preventDefault()
     if(password !== confirmPassword){
       setPasswordMatch(false)
     }
     else{
+      const user = {
+        name,
+        email,
+        password,
+        phoneNumber,
+      }
+      dispatch(signUp(user));
       setEmail("")
       setName("")
       setPassword("")
       setConfirmPassword("");
-      setPhoneNum("");
+      setPhoneNumber("");
       setPasswordMatch(true);
       navigate("/");
     }
@@ -56,7 +67,7 @@ function SignUpPage() {
                 </div>
                 <div className='flex items-center border bg-white w-full'>
                     <span className='px-2 h-full'><FiPhone /></span>
-                    <input type="number" value={phoneNum} name="number" placeholder='Enter Your Mobile Number' className='w-full h-full px-2 py-2 border-l focus:outline-none' id="phone" required onChange={(e) => setPhoneNum(e.target.value)}/>
+                    <input type="number" value={phoneNumber} name="number" placeholder='Enter Your Mobile Number' className='w-full h-full px-2 py-2 border-l focus:outline-none' id="phone" required onChange={(e) => setPhoneNumber(e.target.value)}/>
                 </div>
                 <div className='flex items-center border bg-white w-full'>
                     <span className='px-2 h-full'><GrSecure /></span>

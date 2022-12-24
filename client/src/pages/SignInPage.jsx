@@ -4,12 +4,16 @@ import {BiArrowBack} from 'react-icons/bi'
 import {MdEmail} from 'react-icons/md'
 import {GrSecure} from 'react-icons/gr'
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { login } from '../redux/user/user.action'
 function SignInPage() {
   const [email,setEmail] = useState("")
   const [password,setPassword] = useState("")
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const handleSubmit = (e) =>{
     e.preventDefault();
+    dispatch(login({email,password}));
     setEmail("")
     setPassword("")
     navigate("/")

@@ -1,18 +1,29 @@
 const bcrypt = require('bcrypt')
 const userModel = require('../models/user');
+const providerModel = require('../models/provider');
 const generateToken = require('../utils/generateToken');
-
+const uploads = require('../utils/cloudinaryUpload')
 exports.registerUser = async(req,res) =>{
     try {
-        const {name,email,password,phoneNumber,profilePic} = req.body;
+        const {name,email,password,phoneNumber} = req.body;
         const userExists = await userModel.findOne({email})
-
         // Checking If User Already Exist With Entered Email
         if(userExists)
             return res.status(400).json({message:"User Already Exists"});
         
-        const user = await userModel.create({name,email,password,phoneNumber,profilePic});
-        return generateToken(res,201,user)
+        // Checking if email already exists as provider Email Id
+        const isProvider = await providerModel.findOne({email});
+        if(isProvider)
+            return res.status(400).json({message:"Try Different Email Id"})
+
+        // let providerLogo = "";
+        // if(req?.file){
+        //     const location = req.file.path;
+        //     const result = await uploads(location);
+        //     providerLogo = result.url;
+        // }
+        const user = await userModel.create({name,email,password,phoneNumber});
+        generateToken(res,201,user,true)
     } catch (error) {
         return res.status(500).json({message:error})
     }
@@ -26,17 +37,32 @@ exports.loginUser = async(req,res) =>{
         const passwordMatch = await bcrypt.compare(password,user.password)
         if(!passwordMatch)
             return res.status(400).jons({message:"Invalid Email or Password"})
-        // return generateToken(res,200,user)
-        return res.cookie('token',"jkjklljlkjjlk").json({user})
+        generateToken(res,200,user,true);
     } catch (error) {
         return res.status(500).json({message:error.message})
     }
 }
-exports.getProfile = async(req,res) =>{
+exports.logoutUser = async(req,res) =>{
     try {
-        const {name,email,role} = req.user
-        return res.status(200).json({user:{name,email,role}})
+        res.cookie('userToken',null,{
+            expires: new Date(Date.now()),
+            httpOnly:true,
+        })
+        return res.status(200).json({message:"LogOut Succeccfully"})
     } catch (error) {
-        return res.status(500).json({message:error.message})
+        return res.status(500).json({message:error.message});
     }
 }
+exports.getUserDetails = async(req,res) =>{
+    try {
+      if(!req.user)
+        return res.status(400).json({message:"Invalid request"})
+      const user = await userModel.findOne(req.user._id);
+  
+      if(!user)
+        return res.status(404).json({message:"No user found"});
+      return res.status(200).json({user});
+    } catch (error) {
+      return res.status(500).json({success:false,message:error.message})
+    }
+  }

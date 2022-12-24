@@ -8,6 +8,8 @@ import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import {GiShoppingBag} from 'react-icons/gi'
 import {FiLogOut} from 'react-icons/fi'
+import { useDispatch } from 'react-redux';
+import { logout } from '../redux/user/user.action';
 
 function ProfileAvatar({name}) {
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -18,6 +20,10 @@ function ProfileAvatar({name}) {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const dispatch = useDispatch()
+  const handleLogout = (e) =>{
+    dispatch(logout());
+  }
   return (
     <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
@@ -29,6 +35,7 @@ function ProfileAvatar({name}) {
             aria-controls={open ? 'account-menu' : undefined}
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
+            
           >
             <Avatar sx={{ width: 32, height: 32 }}>{name?.charAt(0)}</Avatar>
           </IconButton>
@@ -81,7 +88,7 @@ function ProfileAvatar({name}) {
             </ListItemIcon>
            My Orders
         </MenuItem>
-        <MenuItem>
+        <MenuItem onClick={handleLogout}>
             <ListItemIcon>
                 <FiLogOut />
             </ListItemIcon>
