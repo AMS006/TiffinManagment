@@ -7,7 +7,7 @@ import SignUpPage from './pages/SignUpPage';
 import AllProvidersPage from './pages/AllProviders.page';
 import ProviderPage from './pages/Provider.page';
 import ContactUs from './pages/ContactUsPage';
-import Aboutus from '../src/pages/AboutUspage';
+import Aboutus from './pages/AboutUspage';
 import MealPage from './pages/Meal.page';
 import { useDispatch,useSelector } from 'react-redux';
 import { getAllProviders, getProviderDetails } from './redux/provider/provider.action';
@@ -17,6 +17,7 @@ import ProviderLogin from './pages/ProviderLogin';
 import ProviderDashboardPage from './components/provider/ProviderDashboardPage';
 import ProviderOrders from './components/provider/ProviderOrders';
 import ProviderMeals from './components/provider/ProviderMeals';
+import OrdersPage from './pages/Orders.page';
 
 // PrivateRoute
 const PrivateRoute = ({children }) => {
@@ -47,6 +48,7 @@ function App() {
         <Route path='/food/:_id' element={<MealPage />} />
         <Route path="/contactus" element={<ContactUs/>}></Route>
         <Route path="/aboutus" element={<Aboutus/>}></Route>
+        <Route path="/orders" element={<OrdersPage />} />
         <Route path="/providers" element={<AllProvidersPage />} />
         <Route path='/provider/:_id' element={<ProviderPage />} />
         <Route path='/registerProvider' element={<ProviderRegistration />} />

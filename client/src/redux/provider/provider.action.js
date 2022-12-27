@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { providerRequest,providerSuccess,providerFail,providerLogout,allProvidersSuccess,allProvidersFail } from './provider.reducer';
+import { providerRequest,providerSuccess,providerFail,providerLogout,allProvidersSuccess,allProvidersFail, singleProviderSuccess } from './provider.reducer';
 
 export const loginProvider = (provider) => async(dispatch) =>{
     try {
@@ -51,6 +51,18 @@ export const getAllProviders = () => async(dispatch) =>{
         })
         return dispatch(allProvidersSuccess(providerData.data))
     }catch (error) {
+        return dispatch(allProvidersFail(error.response.data.message));
+    }
+}
+export const getProviderById = (id) => async(dispatch) =>{
+    try {
+        dispatch(providerRequest())
+        const provider = await axios({
+            method:"GET",
+            url:`http://localhost:4000/api/v1/provider/${id}`
+        })
+        dispatch(singleProviderSuccess(provider.data))
+    } catch (error) {
         return dispatch(allProvidersFail(error.response.data.message));
     }
 }

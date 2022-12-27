@@ -1,11 +1,17 @@
-import {createSlice} from '@reduxjs/toolkit'
+import {createSlice, current} from '@reduxjs/toolkit'
 
 const initialState = {
     orders:undefined,
+    userOrders:undefined,
     loading:false,
     error:""
 }
-
+const updateOrders = (orders,updatedOrder) =>{
+    // console.log(updatedOrder)
+    const newOrders = orders.map((order) => order._id === updatedOrder._id ? updatedOrder:order)
+    console.log(newOrders)
+    return newOrders
+}
 const orderSlice = createSlice({
     name:"Foods",
     initialState,
@@ -17,9 +23,16 @@ const orderSlice = createSlice({
         state.loading = false
         state.orders = action.payload.orders
        },
-       addOrderSuccess:(state,action) =>{
-        state.orders.push(action.payload.order)
+       updateOrderSuccess:(state,action) =>{
         state.loading = false
+        state.orders = updateOrders(current(state.orders), action.payload.newOrder)
+       },
+       addOrderSuccess:(state,action) =>{
+        state.loading = false
+       },
+       userOrderSuccess:(state,action) =>{
+        state.loading = false
+        state.userOrders = action.payload.orders
        },
        orderFail:(state,action)=>{
         state.orders = undefined
@@ -29,6 +42,6 @@ const orderSlice = createSlice({
     }
 })
 
-export const {orderRequest,orderFail,orderSuccess,addOrderSuccess} = orderSlice.actions
+export const {orderRequest,orderFail,orderSuccess,addOrderSuccess,userOrderSuccess,updateOrderSuccess} = orderSlice.actions
 
 export default orderSlice.reducer

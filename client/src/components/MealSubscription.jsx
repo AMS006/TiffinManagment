@@ -1,10 +1,11 @@
 import React from 'react'
 import { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector,useDispatch } from 'react-redux'
 import {MdEmail,MdDateRange} from 'react-icons/md'
 import {RiIncreaseDecreaseLine} from 'react-icons/ri'
 import {FiUser,FiPhone,FiClock} from 'react-icons/fi'
 import { useEffect } from 'react'
+import { addOrder } from '../redux/order/order.action'
 function MealSubscription() {
   const user = useSelector((state) => state.user.user)
   const [name,setName] = useState();
@@ -25,20 +26,52 @@ function MealSubscription() {
     }
   },[user])
   const food = useSelector((state) => state.foods.food)
+  const dispatch = useDispatch()
   const handleSubmit = (e) =>{
     e.preventDefault()
+    if(!user)
+      return window.alert("Plzz Login to Make Order")
     let totalAmount = food.price * quantity
     const data = {
-      name,
-      email,
-      mobileNumber,
+      user:user._id,
+      food:food._id,
+      provider:food.provider,
       quantity,
       address,
       time,
       date,
       totalAmount
     }
-    console.log(data);
+    let options = {
+      "key": 'rzp_test_yu67T9aDVZ2U2O', 
+      "amount": Number(totalAmount)* 100,
+      "currency": "INR",
+      "name": "Acme Corp",
+      "description": "Test Transaction",
+      "image": "https://example.com/your_logo",
+      "handler": function (response){
+        if(response.razorpay_payment_id){
+          data.paymentStatus = "Success"
+          dispatch(addOrder(data))
+          window.alert("Order Placed Succefully")
+        }else{
+          window.alert("Unable To Place Order Try Again")
+        }
+      },
+      "prefill": {
+          "name": "Gaurav Kumar",
+          "email": "gaurav.kumar@example.com",
+          "contact": "9999999999"
+      },
+      "notes": {
+          "address": "Razorpay Corporate Office"
+      },
+      "theme": {
+          "color": "#3399cc"
+      }
+    };
+    var rzp1 = new window.Razorpay(options);
+    rzp1.open()
   }
   return (
     <div className=''>

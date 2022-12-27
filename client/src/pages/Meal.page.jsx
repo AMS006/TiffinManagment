@@ -6,6 +6,10 @@ import MealSubscription from '../components/MealSubscription'
 import HomeLayout from '../layouts/Home.layout'
 import { getFoodById } from '../redux/food/food.action'
 import CircularProgress from '@mui/material/CircularProgress';
+import {Link} from 'react-router-dom'
+import { Typography } from '@mui/material'
+import TopNavigation from '../components/TopNavigation'
+
 function MealPage() {
   const params = useParams();
   const id = params._id
@@ -15,16 +19,42 @@ function MealPage() {
     dispatch(getFoodById(id));
   },[id])
   const food = useSelector((state) => state.foods)
+  let name = ""
+  if(food && food.food){
+    name = food.food.name
+  }
+  let breadcrumbs = [
+      <Link to = '/' underline="hover" key="1" color="inherit" className='hover:underline'>
+        Home
+      </Link>,
+      <Link
+        underline="hover"
+        key="2"
+        to='/provider'
+        color="inherit"
+        className='hover:underline'
+      >
+        Providers
+      </Link>,
+      <Typography >
+        {name}
+      </Typography>
+    ];
    if(food.loading){
     return(
-      <div className='w-full h-full flex items-center justify-center'>
+      <div className='w-full flex items-center justify-center' style={{height:'90vh'}}>
         <CircularProgress />
       </div>
     )
    }
+   
+
   return (
     <>
-      <div className='md:flex lg:gap-8 gap-4 lg:px-16 md:px-6 px-2 py-4'>
+    <div className='md:px-8 px-2 py-3'>
+          <TopNavigation breadcrumbs={breadcrumbs}/>
+        </div>
+      <div className='md:flex lg:gap-8 gap-4 lg:px-16 md:px-6 px-2 pb-4'>
           <div className='md:w-1/2'>
               <MealDetail />
           </div>

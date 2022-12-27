@@ -1,9 +1,10 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import PropTypes from 'prop-types';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
+import {BsThreeDots} from 'react-icons/bs'
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableFooter from '@mui/material/TableFooter';
@@ -18,6 +19,7 @@ import LastPageIcon from '@mui/icons-material/LastPage';
 import { styled } from '@mui/material/styles';
 import TableHead from '@mui/material/TableHead';
 import { useSelector } from 'react-redux';
+import OrderActionMenu from './OrderAction';
 // import { useDispatch, useSelector } from 'react-redux';
 // import {MdDelete,MdEdit} from 'react-icons/md'
 // import {AiFillEye} from 'react-icons/ai'
@@ -108,7 +110,7 @@ TablePaginationActions.propTypes = {
 export default function OrderTable() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(8);
-
+  const [activeOrder,setActiveOrder] = useState("");
   
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - 10) : 0;
@@ -121,7 +123,23 @@ export default function OrderTable() {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-  const orders = useSelector((state) => state.orders.orders)
+  let orders = useSelector((state) => state.orders.orders)
+  let items;
+  useEffect(()=>{
+    if(orders && orders.length > 0){
+      items = [...orders]
+      items.sort((a,b)=>{
+        let date1 = new Date(a.date)
+        let date2 = new Date(b.date)
+        date1 = date1.getTime()
+        date2 = date2.getTime()
+
+        return date2-date1;
+      })
+      orders = items
+      console.log(orders)
+    }
+  },[orders])
   return (
     <>
     {orders && <div className=''>
@@ -135,6 +153,7 @@ export default function OrderTable() {
                 <StyledTableCell align='center'>Food Name</StyledTableCell>
                 <StyledTableCell align='center'>Quantity</StyledTableCell>
                 <StyledTableCell align='centeer'>TotalPrice</StyledTableCell>
+                <StyledTableCell align='centeer'>Address</StyledTableCell>
                 <StyledTableCell align='center'>PaymentStatus</StyledTableCell>
                 <StyledTableCell align='center'>OrderStatus</StyledTableCell>
                 </TableRow>
@@ -153,8 +172,14 @@ export default function OrderTable() {
                 <StyledTableCell align='center'>{order.food.name}</StyledTableCell>
                 <StyledTableCell align='center'>{order.quantity}</StyledTableCell>
                 <StyledTableCell align='center'>₹{order.totalAmount}</StyledTableCell>
+                <StyledTableCell align='center'>{order.address}</StyledTableCell>
                 <StyledTableCell align='center'>{order.paymentStatus}</StyledTableCell>
-                <StyledTableCell align='center'>{order.orderStatus}</StyledTableCell>
+                <StyledTableCell align='center'>
+                  <div className='flex items-center gap-2'>
+                    <span>{order.orderStatus}</span>
+                    {order.orderStatus==="Ordered" && <span onClick={()=>setActiveOrder(order)}><OrderActionMenu order={activeOrder}/></span>}
+                  </div>
+                </StyledTableCell>
 
                 {/* // <StyledTableCell align='center'>
                 //   <div className='flex gap-2 items-center justify-center'>

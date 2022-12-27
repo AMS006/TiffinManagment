@@ -20,7 +20,7 @@ exports.getUserOrders = async(req,res) =>{
         if(!user)
             return res.status(400).json({message:"Plzz Login to fetch orders"});
         
-        const orders = await orderModel.find({user}).populate("address")
+        const orders = await orderModel.find({user}).populate("food")
         if(!orders)
             return res.status(404).json({message:"No orders Found"});
         
@@ -54,6 +54,20 @@ exports.deleteOrder = async(req,res)=>{
         await orderModel.findByIdAndDelete(_id);
 
         return res.status(200).json({message:"Order Deleted Successfully"});
+    } catch (error) {
+        return res.status(500).json({message:error.message})
+    }
+}
+exports.updateOrderStatus = async(req,res) =>{
+    try {
+        const status = req.body.status
+        const id = req.body._id
+        if(!id)
+            return res.status(400).json({message:"No Order Found"})
+        
+        const newOrder = await orderModel.findByIdAndUpdate(id,{orderStatus:status},{new:true})
+
+        return res.status(200).json({newOrder})
     } catch (error) {
         return res.status(500).json({message:error.message})
     }

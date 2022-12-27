@@ -13,6 +13,12 @@ const providerSlice = createSlice({
     reducers:{
         providerRequest:(state) =>{
             state.loading = true
+            state.provider = ""
+        },
+        singleProviderSuccess:(state,action) =>{
+            state.provider = action.payload.provider
+            state.loading = false
+            
         },
         providerSuccess:(state,action)=>{
             state.provider = action.payload.provider
@@ -40,6 +46,6 @@ const providerSlice = createSlice({
     }
 })
 
-export const {providerRequest,providerSuccess,providerFail,providerLogout,allProvidersSuccess,allProvidersFail} = providerSlice.actions
+export const {providerRequest,providerSuccess,providerFail,providerLogout,allProvidersSuccess,allProvidersFail,singleProviderSuccess} = providerSlice.actions
 
 export default providerSlice.reducer

@@ -1,5 +1,5 @@
 const express = require('express');
-const { addOrder, getUserOrders, getProvidersOrders } = require('../controllers/order');
+const { addOrder, getUserOrders, getProvidersOrders, updateOrderStatus } = require('../controllers/order');
 const { isProvider } = require('../middleware/isProvider');
 const { isUser } = require('../middleware/isUser')
 
@@ -10,5 +10,7 @@ router.post('/',isUser,addOrder);
 router.get('/user',isUser, getUserOrders);
 
 router.get('/provider', isProvider, getProvidersOrders);
+
+router.post('/updateStatus', isProvider,updateOrderStatus)
 
 module.exports = router
