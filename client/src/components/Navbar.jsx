@@ -12,15 +12,9 @@ function NavbarLg({name}){
                 <h1 className='font-bold text-xl'>Name</h1>
             </Link>
             <ul className='gap-4 flex items-center font-semibold '>
-<<<<<<< HEAD
                 <li><Link to="/provider">Tiffin Providers</Link></li>
-                <li><Link>About Us</Link></li>
-                <li><Link>Contact Us</Link></li>
-=======
-                <li><Link to="/providers">Tiffin Providers</Link></li>
                 <li><Link to="/aboutus">About Us</Link></li>
                 <li><Link to="/contactus">Contact Us</Link></li>
->>>>>>> 33f200ae12c9246de68f9d3b9c5ad1b69fe69a8b
                 {name ?<ProfileAvatar name={name}/>:
                 <div className='flex items-center gap-2'>
                   <li className='border border-slate-900 text-slate-900 px-2 py-1'><Link to="/signin">Login</Link></li>
@@ -28,8 +22,8 @@ function NavbarLg({name}){
                 </div>}
             </ul>
         </div>
-    </>
-  )
+   </>
+  )
 }
 function NavbarSm({name}){
   const [open,setOpen] = useState(false);
@@ -56,15 +50,12 @@ function NavbarSm({name}){
             </div>
       </div>
        <ul className={`gap-3 flex flex-col items-center absolute z-10 font-semibold h-64 transition ease-in-out duration-500  py-3 w-full ${open?'translate-x-0':'-translate-x-full'}`} style={{backgroundColor:'#eef2f2'}}>
-<<<<<<< HEAD
-        <li><Link to="/provider">Tiffin Providers</Link></li>
-        <li><Link>About Us</Link></li>
-        <li><Link>Contact Us</Link></li>
-=======
+
+
         <li><Link to="/providers">Tiffin Providers</Link></li>
         <li><Link to="/aboutus">About Us</Link></li>
         <li><Link to="/contactus">Contact Us</Link></li>
->>>>>>> 33f200ae12c9246de68f9d3b9c5ad1b69fe69a8b
+
         {!name?<div className='flex flex-col gap-3 items-center'>
           <li className='border border-slate-900 text-slate-900 px-2 py-1'><Link to="/signin">Login</Link></li>
           <li className="bg-slate-800 text-white px-2 py-1"><Link to="/signup">SignUp</Link></li>
