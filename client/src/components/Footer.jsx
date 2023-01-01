@@ -26,20 +26,14 @@ function Footer() {
       <div className="links order-2  md:pt-4 md:pl-5 lg:flex flex-col items-center">
      <ul className='pb-3 '>
      <h1 className='font-bold text-2xl py-2 '>Links</h1>
-<<<<<<< HEAD
 
-=======
->>>>>>> 254e7a7196218c76bdfef1fe8304e1697b918a64
-     <Link to="#"><li className='pl-2 font-medium cursor-pointer hover:text-blue-700'>Home</li></Link>
-     <Link to="#"><li className='pl-2 font-medium cursor-pointer  hover:text-blue-700'>List of Providers</li></Link>
-     <Link to="#"><li className='pl-2 font-medium cursor-pointer  hover:text-blue-700'>Contact Us</li></Link>
-     <Link to="#"><li className='pl-2 font-medium cursor-pointer  hover:text-blue-700'>About Us</li></Link>
+     <Link to="/"><li className='pl-2 font-medium cursor-pointer hover:text-blue-700'>Home</li></Link>
+     <Link to="/providers"><li className='pl-2 font-medium cursor-pointer  hover:text-blue-700'>Tiffin Providers</li></Link>
+     <Link to="contactus"><li className='pl-2 font-medium cursor-pointer  hover:text-blue-700'>Contact Us</li></Link>
+     <Link to="aboutus"><li className='pl-2 font-medium cursor-pointer  hover:text-blue-700'>About Us</li></Link>
      <Link to="/registerProvider"><li className='pl-2 font-medium cursor-pointer  hover:text-blue-700'>Provider Registration</li></Link>
      <Link to="/loginProvider"><li className='pl-2 font-medium cursor-pointer  hover:text-blue-700'>Provider Login</li></Link>
-<<<<<<< HEAD
 
-=======
->>>>>>> 254e7a7196218c76bdfef1fe8304e1697b918a64
      </ul>
      </div>
       </div>
