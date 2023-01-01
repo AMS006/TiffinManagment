@@ -60,7 +60,7 @@ function App() {
         >
           <Route path='Orders' element={<ProviderOrders />} />
           <Route path='Meals' element={<ProviderMeals />} />
-        </Route >
+        </Route>
       </Routes>
   );
 }
