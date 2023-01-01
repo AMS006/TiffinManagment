@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {IoLocation} from 'react-icons/io5'
+import {IoLocation,IoCall} from 'react-icons/io5'
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import ImageViewer from './ImageViewer'
@@ -17,7 +17,7 @@ function ProviderTopBar() {
         provider = providers.find((pr)=> pr._id === _id)
   return (
     <>
-        {provider && <div className='lg:mx-8 border shadow my-2'>
+        {provider && <div className='lg:mx-8 border shadow mb-2'>
             <ImageViewer img={provider.providerLogo} open={openBackground} setOpen={setOpenBackground}/>
 
             <div className='w-full lg:h-60 h-52 shadow relative border-b cursor-pointer' onClick={() =>handleOpen()}>
@@ -30,7 +30,7 @@ function ProviderTopBar() {
                     <p className='flex items-center text-gray-600'><span><IoLocation /></span>{provider.address}</p>
                 </div>
                 <div className='md:w-1/3'>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores natus assumenda aliquid </p>
+                    <p className='flex gap-1 items-center'><span className='font-semibold'>Contact-Number : </span> <span>+91 {provider.phoneNumber}</span></p>
                 </div>
             </div>
         </div>}

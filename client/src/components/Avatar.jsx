@@ -85,7 +85,7 @@ function ProfileAvatar({name}) {
             </ListItemIcon>
            {name}
         </MenuItem>
-        <MenuItem>
+        <MenuItem onClick={()=> navigate('/orders')}>
             <ListItemIcon>
                 <GiShoppingBag />
             </ListItemIcon>
