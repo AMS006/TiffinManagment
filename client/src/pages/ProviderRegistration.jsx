@@ -1,13 +1,15 @@
-import React from 'react'
-import { Link} from 'react-router-dom'
+import React,{useEffect} from 'react'
+import { Link, Navigate, useNavigate} from 'react-router-dom'
 import {BiArrowBack} from 'react-icons/bi'
 import {MdEmail} from 'react-icons/md'
 import {GrSecure} from 'react-icons/gr'
 import {FaRegAddressCard} from 'react-icons/fa'
 import {FiUser,FiPhone} from 'react-icons/fi'
 import { useState } from 'react'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import { providerRegister } from '../redux/provider/provider.action'
+import { useAlert } from 'react-alert'
+import { providerRequest } from '../redux/provider/provider.reducer'
 function ProviderRegistration() {
   const [name,setName] = useState("")
   const [email,setEmail] = useState("")
@@ -18,7 +20,7 @@ function ProviderRegistration() {
   const [providerLogo,setProviderLogo] = useState("")
   const [address,setAddress] = useState("");
   const dispatch = useDispatch();
-
+  const alert = useAlert()
   const handleSubmit = (e) =>{
     e.preventDefault();
     if(password !== confirmPassword){
@@ -44,6 +46,17 @@ function ProviderRegistration() {
       setProviderLogo("");
     }
   }
+  const provider = useSelector((state) => state.provider)
+  const navigate = useNavigate()
+  useEffect(()=>{
+    if(provider && provider.error){
+      alert.show(provider.error)
+      dispatch(providerRequest())
+    }else if(provider && provider.providerRegister){
+      window.alert("Thank You for Registring with Us, You will be notified after we verify You")
+      navigate("/")
+    }
+  },[provider])
   return (
     <div>
       <div className='py-2 sm:px-8 px-2 shadow flex justify-between items-center'>

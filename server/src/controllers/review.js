@@ -3,20 +3,14 @@ const reviewModal = require('../models/review');
 exports.addReview = async(req,res) =>{
     try {
         const user = req.user._id;
-        const data = {user, ...req.body.review}
         const provider = req.body.provider
+        const rating = req.body.rating
+        const message = req.body.message
+        const data = {user,provider,rating,message}
         if(!user)
             return res.status(404).json({message:"Login to add review"})
         
-        const review = await reviewModal.findOneAndUpdate(
-            {provider},
-            {
-                '$push':{
-                    review:data
-                }
-            },
-            {new:true, upsert:true}
-        );
+        const review = await reviewModal.create(data)
         return res.status(201).json({review});
 
     } catch (error) {
@@ -26,7 +20,7 @@ exports.addReview = async(req,res) =>{
 
 exports.getReview = async(req,res) =>{
     try {
-       const {_id} = req.body 
+       const {_id} = req.params 
 
        const review = await reviewModal.find({provider:_id}).populate("review.user");
 

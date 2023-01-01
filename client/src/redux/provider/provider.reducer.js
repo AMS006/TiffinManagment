@@ -5,7 +5,8 @@ const initialState = {
     allProviders:undefined,
     isProvider:false,
     loading:false,
-    error:""
+    error:"",
+    providerRegister:false
 }
 const providerSlice = createSlice({
     name:"Provider",
@@ -14,6 +15,7 @@ const providerSlice = createSlice({
         providerRequest:(state) =>{
             state.loading = true
             state.provider = ""
+            state.error = ""
         },
         singleProviderSuccess:(state,action) =>{
             state.provider = action.payload.provider
@@ -24,6 +26,11 @@ const providerSlice = createSlice({
             state.provider = action.payload.provider
             state.loading = false
             state.isProvider = true
+        },
+        providerRegistrationSuccess:(state,action)=>{
+            state.loading = false
+            state.isProvider = false
+            state.providerRegister = true
         },
         allProvidersSuccess:(state,action) =>{
             state.loading = false
@@ -46,6 +53,6 @@ const providerSlice = createSlice({
     }
 })
 
-export const {providerRequest,providerSuccess,providerFail,providerLogout,allProvidersSuccess,allProvidersFail,singleProviderSuccess} = providerSlice.actions
+export const {providerRequest,providerSuccess,providerFail,providerLogout,allProvidersSuccess,allProvidersFail,singleProviderSuccess,providerRegistrationSuccess} = providerSlice.actions
 
 export default providerSlice.reducer

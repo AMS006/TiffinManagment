@@ -140,6 +140,13 @@ export default function OrderTable() {
       console.log(orders)
     }
   },[orders])
+  if(orders && orders.length<=0){
+    return (
+      <div className='flex items-center justify-center w-full py-3'>
+        <p className='text-gray-500 text-lg'>No Orders Found</p>
+      </div>
+    )
+  }
   return (
     <>
     {orders && <div className=''>

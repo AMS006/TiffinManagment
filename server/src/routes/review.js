@@ -5,6 +5,6 @@ const router = express.Router()
 
 router.post('/',isUser, addReview);
 
-router.get('/', getReview)
+router.get('/:_id', getReview)
 
 module.exports = router

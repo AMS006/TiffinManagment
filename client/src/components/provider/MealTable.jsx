@@ -107,7 +107,7 @@ TablePaginationActions.propTypes = {
   rowsPerPage: PropTypes.number.isRequired,
 };
 
-export default function ProductPage({addMealModal, setAddMealModal}) {
+export default function ProductPage() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(8);
 
@@ -149,7 +149,6 @@ export default function ProductPage({addMealModal, setAddMealModal}) {
   return (
     <>
     {foods && <div className=''>
-      <AddMealModal open={addMealModal} setOpen={setAddMealModal} />
       <FoodViewModal open={foodModal} setOpen={setFoodModal} foodDetails={activeFood}/>
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">

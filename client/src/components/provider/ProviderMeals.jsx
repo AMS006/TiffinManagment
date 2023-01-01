@@ -2,6 +2,7 @@ import React, { useEffect,useState } from 'react'
 import {AiOutlinePlus} from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllFood } from '../../redux/food/food.action';
+import AddMealModal from './AddMealModal';
 import MealTable from './MealTable'
 function ProviderMeals() {
   const provider = useSelector((state) => state.provider.provider);
@@ -24,6 +25,7 @@ function ProviderMeals() {
     </div>
 
         <div className='py-3 px-3'>
+          <AddMealModal open={addMealModal} setOpen={setAddMealModal} />
           <MealTable addMealModal={addMealModal} setAddMealModal={setAddMealModal}/>
         </div>
       </>

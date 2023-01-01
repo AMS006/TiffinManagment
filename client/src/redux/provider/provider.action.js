@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { providerRequest,providerSuccess,providerFail,providerLogout,allProvidersSuccess,allProvidersFail, singleProviderSuccess } from './provider.reducer';
+import { providerRequest,providerSuccess,providerFail,providerLogout,allProvidersSuccess,allProvidersFail, singleProviderSuccess,providerRegistrationSuccess } from './provider.reducer';
 
 export const loginProvider = (provider) => async(dispatch) =>{
     try {
@@ -13,6 +13,7 @@ export const loginProvider = (provider) => async(dispatch) =>{
         })
         return dispatch(providerSuccess(providerData.data))
     }catch (error) {
+        console.log(error.response)
         return dispatch(providerFail(error.response.data.message));
     }
 }
@@ -24,7 +25,7 @@ export const providerRegister = (provider) => async(dispatch) =>{
             url:"http://localhost:4000/api/v1/provider/register",
             data: provider
         })
-        return dispatch(providerSuccess(providerData.data))
+        return dispatch(providerRegistrationSuccess())
     }catch (error) {
         return dispatch(providerFail(error.response.data.message));
     }
@@ -51,7 +52,7 @@ export const getAllProviders = () => async(dispatch) =>{
         })
         return dispatch(allProvidersSuccess(providerData.data))
     }catch (error) {
-        return dispatch(allProvidersFail(error.response.data.message));
+        return dispatch(allProvidersFail());
     }
 }
 export const getProviderById = (id) => async(dispatch) =>{
@@ -63,7 +64,7 @@ export const getProviderById = (id) => async(dispatch) =>{
         })
         dispatch(singleProviderSuccess(provider.data))
     } catch (error) {
-        return dispatch(allProvidersFail(error.response.data.message));
+        return dispatch(allProvidersFail());
     }
 }
 export const getProviderDetails = () => async(dispatch) =>{
@@ -75,6 +76,6 @@ export const getProviderDetails = () => async(dispatch) =>{
         })
         return dispatch(providerSuccess(providerData.data))
     }catch (error) {
-        return dispatch(providerFail(error.response.data.message));
+        return dispatch(providerFail());
     }
 }

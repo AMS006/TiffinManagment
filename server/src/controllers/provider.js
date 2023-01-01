@@ -33,7 +33,7 @@ exports.registerProvider = async(req,res) =>{
         generateToken(res,201,provider,false)
         return res.status(200).json({});
     }catch (error){
-        return res.status(500).json({message:error})
+        return res.status(500).json({message:error.message})
     }
 }
 exports.loginProvider = async(req,res) =>{
@@ -44,7 +44,10 @@ exports.loginProvider = async(req,res) =>{
             return res.status(404).json({message:"Invalid Email or Password"});
         const passwordMatch = await bcrypt.compare(password,provider.password)
         if(!passwordMatch)
-            return res.status(400).jons({message:"Invalid Email or Password"})
+            return res.status(400).json({message:"Invalid Email or Password"})
+        if(!provider.isAuthorized){
+            return res.status(400).json({message:"You are not authorized"})
+        }
         generateToken(res,200,provider,false)
     } catch (error) {
         return res.status(500).json({message:error.message})
@@ -79,7 +82,7 @@ exports.getAllProviders = async(req,res) =>{
         const allProviders = await providerModel.find({isAuthorized:true});
 
         if(!allProviders.length === 0)
-            return res.status(404).json({message:"No provider found"});
+            return res.status(404).json({success:false});
         
         return res.status(200).json({allProviders});
     }catch (error){
@@ -93,7 +96,7 @@ exports.getProviderById = async(req,res) =>{
         const provider = await providerModel.findById(_id);
 
         if(!provider)
-            return res.status(404).json({message:"No Provider Found"});
+            return res.status(404).json({success:false});
         
         return res.status(200).json({provider});
     } catch (error) {

@@ -20,17 +20,15 @@ function ProviderTopBar() {
         {provider && <div className='lg:mx-8 border shadow mb-2'>
             <ImageViewer img={provider.providerLogo} open={openBackground} setOpen={setOpenBackground}/>
 
-            <div className='w-full lg:h-60 h-52 shadow relative border-b cursor-pointer' onClick={() =>handleOpen()}>
-                <img src={provider.providerLogo} className='h-full w-full' alt="backgroundLogo" />
-            </div>
-            <div className='md:px-8 px-4 flex md:flex-row flex-col gap-4 justify-between py-4'>
-                <div>
-                    <h2 className='font-bold text-2xl '>{provider.name}</h2>
-                    <p className='text-sm'>Veg, Non-Veg , Dinner, Lunch</p>
-                    <p className='flex items-center text-gray-600'><span><IoLocation /></span>{provider.address}</p>
+            <div className='md:flex gap-4'>
+                <div className='w-full lg:h-60 h-52 shadow relative border-b cursor-pointer' onClick={() =>handleOpen()}>
+                    <img src={provider.providerLogo} className='h-full w-full' alt="backgroundLogo" />
                 </div>
-                <div className='md:w-1/3'>
-                    <p className='flex gap-1 items-center'><span className='font-semibold'>Contact-Number : </span> <span>+91 {provider.phoneNumber}</span></p>
+                <div className='w-full px-4 flex flex-col gap-1 py-4'>
+                        <h2 className='font-bold text-2xl '>{provider.name}</h2>
+                        <p className='text-sm'>Veg, Non-Veg , Dinner, Lunch</p>
+                        <p className='flex items-center text-gray-600'><span><IoLocation /></span>{provider.address}</p>
+                        <p className='flex gap-1 items-center'><span className='font-semibold'>Contact-Number : </span> <span>+91 {provider.phoneNumber}</span></p>
                 </div>
             </div>
         </div>}

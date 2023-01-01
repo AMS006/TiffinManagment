@@ -58,7 +58,7 @@ function MealPage() {
           <div className='md:w-1/2'>
               <MealDetail />
           </div>
-          <div className='md:sticky top-0 z-10 bg-white md:w-1/2 py-4'>
+          <div className='md:sticky top-0 z-10 md:mt-0 mt-20 bg-white md:w-1/2 py-4'>
               <MealSubscription />
           </div>
       </div>

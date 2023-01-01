@@ -7,6 +7,8 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { login } from '../redux/user/user.action'
 import { loginProvider } from '../redux/provider/provider.action'
+import { useAlert } from 'react-alert'
+import { providerRequest } from '../redux/provider/provider.reducer'
 function ProviderLogin() {
   const [email,setEmail] = useState("")
   const [password,setPassword] = useState("")
@@ -19,11 +21,17 @@ function ProviderLogin() {
     setPassword("")
   }
   const provider = useSelector((state) => state.provider);
+  const alert = useAlert()
   useEffect(()=>{
     if(provider.isProvider){
       navigate('/provider/dashboard');
+    }else if(provider && provider.error){
+      alert.show(provider.error)
+      dispatch(providerRequest())
+
     }
   },[provider])
+  
   return (
     <div>
       <div className='py-2 sm:px-8 px-2 shadow flex justify-between items-center'>
