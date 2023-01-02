@@ -3,6 +3,7 @@ import {createSlice} from '@reduxjs/toolkit'
 const initialState = {
     loading:false,
     reviews:[],
+    providerReviews:[],
     error:""
 }
 const reviewSlice = createSlice({
@@ -12,9 +13,17 @@ const reviewSlice = createSlice({
         reviewRequest:(state)=>{
             state.loading = true
         },
+        providerReviewRequest:(state)=>{
+            state.loading = true
+            state.providerReviews = []
+        },
+        allReviewSuccess:(state,action)=>{
+            state.loading = false
+            state.reviews = action.payload.reviews
+        },
         reviewSuccess:(state,action)=>{
             state.loading = false
-            state.reviews = action.payload.review
+            state.providerReviews = action.payload.review
         },
         addReviewSuccess:(state,action) =>{
             state.loading = false
@@ -28,6 +37,6 @@ const reviewSlice = createSlice({
     }
 })
 
-export const {reviewRequest,reviewSuccess,reviewFail,addReviewSuccess} = reviewSlice.actions
+export const {reviewRequest,providerReviewRequest,reviewSuccess,reviewFail,addReviewSuccess,allReviewSuccess} = reviewSlice.actions
 
 export default reviewSlice.reducer

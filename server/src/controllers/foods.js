@@ -30,7 +30,7 @@ exports.addFood = async(req,res) =>{
 exports.getAllFoodsOfProvider = async(req,res) =>{
     try {
         const {_id} = req.params;
-        const foods = await foodModel.find({provider:_id});
+        const foods = await foodModel.find({provider:_id}).populate("provider");
 
         if(!foods)
             return res.status(404).json({message:"NO Food Found"})
@@ -46,7 +46,7 @@ exports.getFoodById = async(req,res) =>{
         if(!_id)
             return res.status(400).json({message:"Unable to get Food"});
         
-        const food = await foodModel.findById(_id);
+        const food = await foodModel.findById(_id).populate("provider");
 
         if(!food)
             return res.status(404).json({message:"No food Found"});

@@ -8,7 +8,7 @@ const initialState = {
 }
 const updateOrders = (orders,updatedOrder) =>{
     // console.log(updatedOrder)
-    const newOrders = orders.map((order) => order._id === updatedOrder._id ? updatedOrder:order)
+    const newOrders = orders.map((order) => order._id === updatedOrder._id ? updatedOrder : order)
     console.log(newOrders)
     return newOrders
 }
@@ -25,7 +25,11 @@ const orderSlice = createSlice({
        },
        updateOrderSuccess:(state,action) =>{
         state.loading = false
-        state.orders = updateOrders(current(state.orders), action.payload.newOrder)
+        state.orders = updateOrders(current(state.orders), action.payload.updatedOrder)
+       },
+       updateUserOrderSuccess:(state,action) =>{
+        state.loading = false
+        state.userOrders = updateOrders(current(state.userOrders),action.payload.updatedOrder)
        },
        addOrderSuccess:(state,action) =>{
         state.loading = false
@@ -42,6 +46,6 @@ const orderSlice = createSlice({
     }
 })
 
-export const {orderRequest,orderFail,orderSuccess,addOrderSuccess,userOrderSuccess,updateOrderSuccess} = orderSlice.actions
+export const {orderRequest,orderFail,orderSuccess,addOrderSuccess,userOrderSuccess,updateOrderSuccess,updateUserOrderSuccess} = orderSlice.actions
 
 export default orderSlice.reducer

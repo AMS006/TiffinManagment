@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 import { CircularProgress, Typography } from '@mui/material'
 import TopNavigation from '../components/TopNavigation'
 import HomeLayout from '../layouts/Home.layout'
-import { getUserOrders } from '../redux/order/order.action'
+import { getUserOrders, updateUserOrder } from '../redux/order/order.action'
 import ReviewModal from '../components/ReviewModal'
 
 function OrdersPage() {
@@ -41,6 +41,9 @@ function OrdersPage() {
           Orders
         </Typography>
     ];
+    const handleCancel = (order) =>{
+        dispatch(updateUserOrder({_id:order._id,status:"Cancelled"}))
+    }
   return (
     <div className='md:px-8 px-1 py-4'>
         <ReviewModal open={reviewModal} setOpen={setReviewModal} order={activeOrder}/>
@@ -58,10 +61,10 @@ function OrdersPage() {
                             <p>Quantity : <span className='font-semibold'>{order.quantity}</span></p>
                             <p>Price : <span className='font-semibold'>₹{order.totalAmount}</span></p>
                             <p>OrderStatus: <span className='font-semibold'>{order.orderStatus}</span></p>
-                            <div className='flex justify-between'>
+                            <div className='flex gap-2 justify-between'>
                                 <p>OrderedDate: <span className='font-semibold'>{order.date}</span></p>
                                 <div>
-                                    {order.orderStatus === "Ordered" && <button className='bg-red-500 text-white px-2 py-1 rounded '>Cancel Order</button>}
+                                    {order.orderStatus === "Ordered" && <button className='bg-red-500 text-white px-2 py-1 rounded ' onClick={() =>handleCancel(order)}>Cancel Order</button>}
                                 </div>
                             </div>
                             {order.orderStatus==="Delivered" && <button className="cursor-pointer text-blue-800 hover:underline" onClick={() =>handleReviewModal(order)}>Write a Review</button>}

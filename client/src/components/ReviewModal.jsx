@@ -27,6 +27,8 @@ export default function ReviewModal({open, setOpen,order}) {
         user:order.user
     }
     dispatch(addReview(data))
+    setText("")
+    setValue(2)
     handleClose()
   }
   return (

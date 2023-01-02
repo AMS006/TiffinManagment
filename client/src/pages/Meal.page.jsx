@@ -20,8 +20,12 @@ function MealPage() {
   },[id])
   const food = useSelector((state) => state.foods)
   let name = ""
+  let providerName = ""
+  let providerId = ""
   if(food && food.food){
     name = food.food.name
+    providerName = food.food.provider.name
+    providerId = food.food.provider._id
   }
   let breadcrumbs = [
       <Link to = '/' underline="hover" key="1" color="inherit" className='hover:underline'>
@@ -36,6 +40,15 @@ function MealPage() {
       >
         Providers
       </Link>,
+      <Link
+      underline="hover"
+      key="2"
+      to={`/provider/${providerId}`}
+      color="inherit"
+      className='hover:underline'
+    >
+      {providerName}
+    </Link>,
       <Typography >
         {name}
       </Typography>

@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {orderRequest,orderFail,addOrderSuccess,orderSuccess,userOrderSuccess,updateOrderSuccess} from './order.reducer'
+import {orderRequest,orderFail,addOrderSuccess,orderSuccess,userOrderSuccess,updateOrderSuccess, updateUserOrderSuccess} from './order.reducer'
 export const getAllOrders = () => async(dispatch) =>{
     try{
         dispatch(orderRequest())
@@ -47,7 +47,22 @@ export const updateOrder = (data) => async(dispatch)=>{
             url:`http://localhost:4000/api/v1/order/updateStatus`,
             data
         })
+        console.log(order)
         dispatch(updateOrderSuccess(order.data))
+    } catch (error) {
+        return dispatch(orderFail(error.response.data.message));
+    }
+}
+export const updateUserOrder = (data) => async(dispatch)=>{
+    try {
+        dispatch(orderRequest())
+        const order = await axios({
+            method:"POST",
+            url:`http://localhost:4000/api/v1/order/updateStatus`,
+            data
+        })
+        console.log(order)
+        dispatch(updateUserOrderSuccess(order.data))
     } catch (error) {
         return dispatch(orderFail(error.response.data.message));
     }

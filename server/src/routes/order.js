@@ -11,6 +11,6 @@ router.get('/user',isUser, getUserOrders);
 
 router.get('/provider', isProvider, getProvidersOrders);
 
-router.post('/updateStatus', isProvider,updateOrderStatus)
+router.post('/updateStatus',updateOrderStatus)
 
 module.exports = router

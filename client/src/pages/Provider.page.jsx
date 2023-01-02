@@ -10,6 +10,8 @@ import CircularProgress from '@mui/material/CircularProgress';
 import TopNavigation from '../components/TopNavigation'
 import Typography from '@mui/material/Typography';
 import { getProviderById } from '../redux/provider/provider.action'
+import { getProvidersReview } from '../redux/review/review.action'
+import Reviews from '../components/Reviews'
 
 
 function ProviderPage() {
@@ -19,8 +21,11 @@ function ProviderPage() {
     const _id = params._id;
     const dispatch = useDispatch()
    useEffect(()=>{
-    dispatch(getAllFood(_id))
-    dispatch(getProviderById(_id))
+    if(_id){
+      dispatch(getAllFood(_id))
+      dispatch(getProviderById(_id))
+      dispatch(getProvidersReview(_id))
+    }
    },[_id])
    const food = useSelector((state) => state.foods)
     const providers = useSelector((state) => state.provider?.allProviders);
@@ -59,8 +64,10 @@ function ProviderPage() {
         </div>
         <ProviderTopBar foods={foods}/>
         <MealBox foods={foods}/>
+        <Reviews />
       </div>:null
       }
+      
    </>
   )
 }

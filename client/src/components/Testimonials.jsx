@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
@@ -7,33 +7,16 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import TestimonialCard from './TestimonialCard';
 import { Autoplay, Pagination, Navigation } from "swiper";
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 function Testimonials() {
-    const slidesData = [
-        {
-            name:"Anas Sain",
-            img:"https://tse2.mm.bing.net/th?id=OIP.lFXfL8PC-747l5Ax5Qs-zgHaHa&pid=Api&P=0",
-            rating:4,
-            reviewText:"Highly recommended for good homely food alongwith a great service too. The immediate customer service is cherry on the top alongwith the good food. A very good initiative."
-        },
-        {
-            name:"Anas Sain",
-            img:"https://tse2.mm.bing.net/th?id=OIP.lFXfL8PC-747l5Ax5Qs-zgHaHa&pid=Api&P=0",
-            rating:4,
-            reviewText:"Highly recommended for good homely food alongwith a great service too. The immediate customer service is cherry on the top alongwith the good food. A very good initiative."
-        },
-        {
-            name:"Anas Sain",
-            img:"https://tse2.mm.bing.net/th?id=OIP.lFXfL8PC-747l5Ax5Qs-zgHaHa&pid=Api&P=0",
-            rating:4,
-            reviewText:"Highly recommended for good homely food alongwith a great service too. The immediate customer service is cherry on the top alongwith the good food. A very good initiative."
-        },
-        {
-            name:"Anas Sain",
-            img:"https://tse2.mm.bing.net/th?id=OIP.lFXfL8PC-747l5Ax5Qs-zgHaHa&pid=Api&P=0",
-            rating:4,
-            reviewText:"Highly recommended for good homely food alongwith a great service too. The immediate customer service is cherry on the top alongwith the good food. A very good initiative."
-        }
-    ]
+    const [slidesData,setSlidesData] = useState("")
+    const reviews = useSelector((state) => state.reviews.reviews)
+
+    useEffect(()=>{
+      if(reviews)
+        setSlidesData(reviews)
+    },[reviews])
   return (
     <div className=' my-4'>
         <h1 className='font-bold md:text-2xl text-xl text-center py-7'>Testimonials</h1>
@@ -60,9 +43,9 @@ function Testimonials() {
         className="mySwiper"
       >
         
-            {slidesData.map((data,index)=> (
+            {slidesData && slidesData.map((data,index)=> (
                 <SwiperSlide key={index}>
-                    <TestimonialCard name={data.name} img={data.img} rating={data.rating} reviewText={data.reviewText} />
+                    <TestimonialCard name={data.user.name} img="https://tse2.mm.bing.net/th?id=OIP.rMWHLs1fJ9nlbiv9CAgsqAHaHa&pid=Api&P=0" rating={data.rating} reviewText={data.message} />
                 </SwiperSlide>
             ))}
       </Swiper>

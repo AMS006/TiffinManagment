@@ -35,7 +35,7 @@ exports.getProvidersOrders = async(req,res) =>{
         if(!provider)
             return res.status(400).json({message:"Plzz Login to fetch orders"});
         
-        const orders = await orderModel.find({provider}).populate("user food address")
+        const orders = await orderModel.find({provider}).populate("user food").sort({createdAt:-1})
 
         if(!orders)
             return res.status(404).json({message:"No orders Found"});
@@ -62,12 +62,13 @@ exports.updateOrderStatus = async(req,res) =>{
     try {
         const status = req.body.status
         const id = req.body._id
+        console.log(status,id)
         if(!id)
             return res.status(400).json({message:"No Order Found"})
         
-        const newOrder = await orderModel.findByIdAndUpdate(id,{orderStatus:status},{new:true})
-
-        return res.status(200).json({newOrder})
+        const updatedOrder = await orderModel.findByIdAndUpdate(id,{orderStatus:status},{new:true}).populate("user food")
+        
+        return res.status(200).json({updatedOrder})
     } catch (error) {
         return res.status(500).json({message:error.message})
     }

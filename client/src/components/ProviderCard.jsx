@@ -4,6 +4,11 @@ import { Link } from 'react-router-dom'
 import {AiFillStar} from 'react-icons/ai';
 
 function ProviderCard({providerLogo,name,address,rating,id}) {
+  if(Number(rating)%2 === 0){
+    rating += '.0'
+  }else{
+    rating = Number(rating).toFixed(1)
+  }
   return (
     <>
       <Link to={`/provider/${id}`} className='flex flex-col p-2 border border-gray-300  hover:shadow-lg rounded-lg transition duration-300 ease-in gap-3'>

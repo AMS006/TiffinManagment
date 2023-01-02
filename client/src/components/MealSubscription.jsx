@@ -6,6 +6,7 @@ import {RiIncreaseDecreaseLine} from 'react-icons/ri'
 import {FiUser,FiPhone,FiClock} from 'react-icons/fi'
 import { useEffect } from 'react'
 import { addOrder } from '../redux/order/order.action'
+import { useNavigate } from 'react-router-dom'
 function MealSubscription() {
   const user = useSelector((state) => state.user.user)
   const [name,setName] = useState();
@@ -27,6 +28,7 @@ function MealSubscription() {
   },[user])
   const food = useSelector((state) => state.foods.food)
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const handleSubmit = (e) =>{
     e.preventDefault()
     if(!user)
@@ -54,6 +56,7 @@ function MealSubscription() {
           data.paymentStatus = "Success"
           dispatch(addOrder(data))
           window.alert("Order Placed Succefully")
+          navigate('/orders')
         }else{
           window.alert("Unable To Place Order Try Again")
         }

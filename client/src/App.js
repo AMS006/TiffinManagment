@@ -18,6 +18,7 @@ import ProviderDashboardPage from './components/provider/ProviderDashboardPage';
 import ProviderOrders from './components/provider/ProviderOrders';
 import ProviderMeals from './components/provider/ProviderMeals';
 import OrdersPage from './pages/Orders.page';
+import { getAllReview } from './redux/review/review.action';
 
 // PrivateRoute
 const PrivateRoute = ({children }) => {
@@ -31,6 +32,7 @@ function App() {
     dispatch(getProviderDetails());
     dispatch(getUserDetails());
     dispatch(getAllProviders());
+    dispatch(getAllReview())
   },[dispatch]);
 
   const navigate = useNavigate();
