@@ -48,7 +48,7 @@ function MealSubscription() {
       "key": 'rzp_test_yu67T9aDVZ2U2O', 
       "amount": Number(totalAmount)* 100,
       "currency": "INR",
-      "name": "Acme Corp",
+      "name": "TiffinWala",
       "description": "Test Transaction",
       "image": "https://example.com/your_logo",
       "handler": function (response){
@@ -62,8 +62,8 @@ function MealSubscription() {
         }
       },
       "prefill": {
-          "name": "Gaurav Kumar",
-          "email": "gaurav.kumar@example.com",
+          "name": `${user.name}`,
+          "email": `${user.email}`,
           "contact": "9999999999"
       },
       "notes": {

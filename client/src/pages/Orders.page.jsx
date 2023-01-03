@@ -42,7 +42,7 @@ function OrdersPage() {
         </Typography>
     ];
     const handleCancel = (order) =>{
-        dispatch(updateUserOrder({_id:order._id,status:"Cancelled"}))
+        dispatch(updateUserOrder({_id:order._id,status:"Cancelled",user:order.user,provider:order.provider,food:order.food}))
     }
   return (
     <div className='md:px-8 px-1 py-4'>

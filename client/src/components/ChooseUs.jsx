@@ -22,7 +22,7 @@ function ChooseUs() {
           <h1 className="text-center text-2xl py-5 sm:order-2 lg:order-1 px-1 sm:flex sm:justify-center sm:items-center ">Authentic - Sindhi, Maharashtrian, Gujarati, Bengali, Punjabi & So Much More!</h1>
         </div>
         <div className='border-2 border-gray-600 rounded-md grid sm:grid-cols-2' data-aos="fade-left" data-aos-duration="1500">
-          <img src="https://eathomie-com.s3.amazonaws.com/images/disposable-packaging.jpg" alt="image1" className='w-auto sm:order-2 lg:order-2 ' style={{ height: "230px" }} />
+          <img src="https://eathomie-com.s3.amazonaws.com/images/disposable-packaging.jpg" alt="image1" className='w-full sm:order-2 lg:order-2 ' style={{ height: "230px" }} />
           <h1 className="text-center text-2xl py-5 sm:order-1 lg:order-1 px-1 sm:flex sm:justify-center sm:items-center ">The Most Convenient Way to Order from Home Chefs Around You.</h1>
         </div>
       </div>

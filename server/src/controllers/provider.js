@@ -3,6 +3,7 @@ const providerModel = require('../models/provider');
 const userModel = require('../models/user')
 const generateToken = require('../utils/generateToken');
 const uploads = require('../utils/cloudinaryUpload');
+const { sendEmail } = require('../utils/sendEmail');
 exports.registerProvider = async(req,res) =>{
     try {
         const {name,email,password,phoneNumber,address} = req.body;
@@ -30,8 +31,11 @@ exports.registerProvider = async(req,res) =>{
             providerLogo
         }
         const provider = await providerModel.create(data);
+        let subject = "New Provider Registration"
+        let message = `Name: ${data.name}\n Email: ${data.email} \n Address:${data.address} \n Requested to registered`
+        await sendEmail({email:"tiffinwala4@gmail.com",subject,message})
+        // await sendEmail({email:data.email,subject:"Thank You For Registring with Us", message:"You Will Be Notified Shortly After We Verify You"})
         generateToken(res,201,provider,false)
-        return res.status(200).json({});
     }catch (error){
         return res.status(500).json({message:error.message})
     }

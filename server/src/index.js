@@ -18,8 +18,8 @@ app.use(cors({
     origin: 'http://localhost:3000', 
     methods: ['GET', 'PUT', 'POST','DELETE'], 
     allowedHeaders: ['Content-Type', 'Authorization', 'x-csrf-token'], 
-    credentials: true, 
-    maxAge: 5000, 
+    credentials: true,
+    maxAge: 5000,
     exposedHeaders: ['*', 'Authorization' ] 
 }))
 app.use(express.json())

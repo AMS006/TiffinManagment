@@ -21,6 +21,7 @@ function ProviderCard({providerLogo,name,address,rating,id}) {
             <span className='flex items-center bg-slate-800 rounded-lg px-1 text-white'><small>{`${rating==0 ? 'New':rating}`}</small><AiFillStar fontSize={"medium"}/></span>
             </div>
           <p className='text-sm'>Veg, Non-Veg, Lunch, Dinner</p>
+          <p className='text-gray-500'>Time: 8:00 am To 8:30 pm</p>
           <p className='flex items-center text-gray-600'><span><IoLocation /></span>{address}</p>
         </div>
       </Link>

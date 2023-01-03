@@ -5,11 +5,11 @@ import ProviderCard from '../components/ProviderCard'
 import { getAllProviders } from '../redux/provider/provider.action';
 import { useSelector,useDispatch } from 'react-redux';
 import {Link} from 'react-router-dom'
-import { Typography } from '@mui/material';
+import { CircularProgress, Typography } from '@mui/material';
 import TopNavigation from '../components/TopNavigation';
 
 function AllProvidersPage() {
-    
+    const provider = useSelector((state) => state.provider)
     const providers = useSelector((state) => state.provider.allProviders)
     const breadcrumbs = [
         <Link to = '/' underline="hover" key="1" color="inherit" className='hover:underline'>
@@ -19,6 +19,13 @@ function AllProvidersPage() {
           AllProviders
         </Typography>
       ];
+    if(provider.loading){
+      return(
+        <div className='w-full flex items-center justify-center' style={{height:'50vh'}}>
+          <CircularProgress />
+        </div>
+      )
+    }  
   return (
     <>
         {providers && <div>

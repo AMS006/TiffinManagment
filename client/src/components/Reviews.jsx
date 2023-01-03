@@ -9,8 +9,8 @@ function Reviews() {
   return (
     <div>
         {reviews && reviews.length > 0?
-        <div className='px-8'>
-            <h1 className='font-semibold py-3 text-lg'>Customers Reviews</h1>
+        <div className='md:px-8 px-2'>
+            <h1 className='font-semibold py-3 text-xl'>Customers Reviews</h1>
             <div className='flex gap-3 flex-col'>
                 {reviews.map((review) =>(
                     <div className='border-b py-2'>
