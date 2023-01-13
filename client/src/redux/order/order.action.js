@@ -67,3 +67,14 @@ export const updateUserOrder = (data) => async(dispatch)=>{
         return dispatch(orderFail(error.response.data.message));
     }
 }
+export const deleteOrder = (data) => async(dispatch) =>{
+    try {
+        dispatch(orderRequest())
+        const order = await axios({
+            method:"DELETE",
+            url:`http://localhost:4000/api/v1/order/${data.order._id}`
+        })
+    } catch (error) {
+        return dispatch(orderFail(error.response.data.message));
+    }
+}

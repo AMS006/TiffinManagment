@@ -7,6 +7,7 @@ import TopNavigation from '../components/TopNavigation'
 import HomeLayout from '../layouts/Home.layout'
 import { getUserOrders, updateUserOrder } from '../redux/order/order.action'
 import ReviewModal from '../components/ReviewModal'
+import {MdDelete} from 'react-icons/md'
 
 function OrdersPage() {
     const orders = useSelector((state) => state.orders.userOrders)
@@ -42,7 +43,10 @@ function OrdersPage() {
         </Typography>
     ];
     const handleCancel = (order) =>{
-        dispatch(updateUserOrder({_id:order._id,status:"Cancelled",user:order.user,provider:order.provider,food:order.food}))
+        dispatch(updateUserOrder({_id:order._id,status:"Cancelled",user:order.user,provider:order.provider,food:order.food,quantity:order.quantity}))
+    }
+    const handleDelete = (order) =>{
+
     }
   return (
     <div className='md:px-8 px-1 py-4'>

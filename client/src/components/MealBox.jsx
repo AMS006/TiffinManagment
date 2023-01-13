@@ -13,8 +13,10 @@ function MealBox({foods}) {
         {foods && <div className='lg:px-12 md:px-6 px-4  py-4 '>
             <h1 className="font-bold font-mono text-2xl">All Meal Plans</h1>
             <div className='grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 py-4 gap-6'>
-                {foods.map((food,index) =>(
-                    <Link to={`/food/${food._id}`} key={index}>
+                {foods.map((food,index) =>{
+                    if(food.quantity > 0){
+                        return(
+                            <Link to={`/food/${food._id}`} key={index}>
                         <div className='hover:shadow py-2 '>
                             <div>
                                 <img src={food.image} alt={food.name} />
@@ -26,7 +28,9 @@ function MealBox({foods}) {
                             </div>
                         </div>
                     </Link>
-                ))}
+                        )
+                    }
+                })}
             </div>
         </div>}
     </>

@@ -9,7 +9,10 @@ const food = require ('./routes/foods')
 const order = require('./routes/order')
 const address = require('./routes/address');
 const review  = require('./routes/review')
+const moment = require('moment')
+const CronJob = require('cron').CronJob;
 const initialData = require('./routes/initialData')
+const foodModel = require('./models/food')
 
 const app = express()
 env.config();
@@ -20,7 +23,7 @@ app.use(cors({
     allowedHeaders: ['Content-Type', 'Authorization', 'x-csrf-token'], 
     credentials: true,
     maxAge: 5000,
-    exposedHeaders: ['*', 'Authorization' ] 
+    exposedHeaders: ['*', 'Authorization' ]
 }))
 app.use(express.json())
 app.use(cookieParser())
@@ -31,7 +34,16 @@ mongoose.connect(process.env.MONGODB_CONNECTION,{
 }).then(()=>{
     console.log("DataBase Connected")
 })
-
+const updateFood = async() =>{
+    const foods = await foodModel.find()
+    for(let i = 0;i<foods.length;i++){
+        await foodModel.findByIdAndUpdate(foods[i]._id,{$set:{quantity:foods[i].enteredQuantity}});
+    }
+}
+const timeInSec = moment().endOf('day').valueOf()
+new CronJob('0 0 * * *', async () => {
+    await updateFood()
+  }, null, true, 'Asia/Kolkata');
 app.use('/api/v1/user', user);
 app.use('/api/v1/provider',provider)
 app.use('/api/v1/food',food)

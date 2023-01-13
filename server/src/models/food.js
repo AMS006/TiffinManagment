@@ -22,6 +22,14 @@ const foodSchema = new mongoose.Schema({
     },
     description:{
         type:String
+    },
+    enteredQuantity:{
+        type:Number,
+        required:true
+    },
+    quantity:{
+        type:Number,
+        required:true
     }
 })
 

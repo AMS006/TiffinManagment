@@ -45,7 +45,7 @@ function AllProvidersPage() {
             <h1 className='font-bold md:text-2xl text-xl  md:px-8 px-2 py-3'>All Tiffin Providers</h1>
             <div className='grid lg:grid-cols-3 md:grid-cols-2 my-4  gap-6 md:px-8 px-2'>
                 {providers.map((item,index) =>(
-                    <ProviderCard name={item.name} key={index} providerLogo={item.providerLogo}  address={item.address} rating={item.rating} id={item._id}/>
+                  <ProviderCard name={item.name} key={index} providerLogo={item.providerLogo}  address={item.address} rating={item.rating} id={item._id}/>
                 ))}
             </div>
         </div>}

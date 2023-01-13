@@ -10,6 +10,8 @@ exports.addOrder = async(req,res) =>{
         const obj = {user,...data}
         const order = await orderModel.create(obj);
         const food = await foodModel.findById(data.food)
+        const quantity = food.quantity - data.quantity
+        await foodModel.findByIdAndUpdate(food._id,{$set:{quantity}})
         const subject = "Ordered: Your Order for Food is Successfull"
         const message = `Hi ${req.user.name} \n Your Order for ${food.name} is Successfull \n Thank You`
         const email = req.user.email
@@ -53,7 +55,7 @@ exports.getProvidersOrders = async(req,res) =>{
 }
 exports.deleteOrder = async(req,res)=>{
     try {
-        const {_id} = req.body;
+        const {_id} = req.params;
         if(!_id)
             return res.status(404).json({message:"Invalid Request"});
         
@@ -77,6 +79,8 @@ exports.updateOrderStatus = async(req,res) =>{
             subject = "Cancelled: Order has been Cancelled"
             message = `Hi ${req.body.provider.name} Your Order for ${req.body.food.name} has been Cancelled by ${req.body.user.name}`
             email = req.body.provider.email
+            const quantity = req.body.food.quantity + req.body.quantity
+            await foodModel.findByIdAndUpdate(req.body.food._id,{$set:{quantity}})
         }
         await sendEmail({email,subject,message});
 

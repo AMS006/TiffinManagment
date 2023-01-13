@@ -1,5 +1,5 @@
 const express = require('express');
-const { addOrder, getUserOrders, getProvidersOrders, updateOrderStatus } = require('../controllers/order');
+const { addOrder, getUserOrders, getProvidersOrders, updateOrderStatus, deleteOrder } = require('../controllers/order');
 const { isProvider } = require('../middleware/isProvider');
 const { isUser } = require('../middleware/isUser')
 
@@ -11,6 +11,8 @@ router.get('/user',isUser, getUserOrders);
 
 router.get('/provider', isProvider, getProvidersOrders);
 
-router.post('/updateStatus',updateOrderStatus)
+router.post('/updateStatus',updateOrderStatus);
 
-module.exports = router
+router.delete('/:_id',deleteOrder);
+
+module.exports = router;

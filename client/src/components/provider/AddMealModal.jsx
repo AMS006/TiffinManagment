@@ -52,6 +52,7 @@ export default function AddMealModal({open,setOpen}) {
   const [name,setName] = useState("")
   const [price,setPrice] = useState("")
   const [veg,setVeg] = useState("")
+  const [quantity,setQuantity] = useState("")
   const [description,setDescription] = useState("")
   const handleClose = () => {
     setOpen(false);
@@ -76,6 +77,7 @@ export default function AddMealModal({open,setOpen}) {
     form.append("price",price)
     form.append("description",description)
     form.append("isVeg",veg)
+    form.append("quantity",quantity)
     form.append("foodImage",image)
     
     dispatch(addFood(form));
@@ -105,6 +107,10 @@ export default function AddMealModal({open,setOpen}) {
                 <div className='flex flex-col gap-1'> 
                   <label htmlFor="price" className='font-semibold'>Price</label>
                   <input type="Number" value={price} required name="price" id="price" placeholder = "Enter Price of Meal" className="px-3 py-1 border rounded focus:outline-none" onChange={(e)=> setPrice(e.target.value)}/>
+                </div>
+                <div className='flex flex-col gap-1'> 
+                  <label htmlFor="price" className='font-semibold'>Enter Per Day Quantity</label>
+                  <input type="Number" value={quantity} required name="quantity" id="quantity" placeholder = "Enter Quantity" className="px-3 py-1 border rounded focus:outline-none" onChange={(e)=> setQuantity(e.target.value)}/>
                 </div>
                 <div className='flex flex-col gap-1'> 
                   <label htmlFor="type" className='font-semibold'>Type</label>

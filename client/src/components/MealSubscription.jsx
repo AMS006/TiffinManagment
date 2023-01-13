@@ -29,10 +29,13 @@ function MealSubscription() {
   const food = useSelector((state) => state.foods.food)
   const dispatch = useDispatch()
   const navigate = useNavigate()
+
   const handleSubmit = (e) =>{
     e.preventDefault()
     if(!user)
       return window.alert("Plzz Login to Make Order")
+    if(quantity > food.quantity)
+      return window.alert("Cannot Provide in this much Quantity")
     let totalAmount = food.price * quantity
     const data = {
       user:user._id,

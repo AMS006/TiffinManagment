@@ -12,6 +12,7 @@ const updateOrders = (orders,updatedOrder) =>{
     console.log(newOrders)
     return newOrders
 }
+
 const orderSlice = createSlice({
     name:"Foods",
     initialState,
