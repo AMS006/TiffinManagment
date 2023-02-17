@@ -18,7 +18,7 @@ const app = express()
 env.config();
 
 app.use(cors({
-    origin: 'http://localhost:3000', 
+    origin: 'https://tiffin-managment-client.vercel.app', 
     methods: ['GET', 'PUT', 'POST','DELETE'], 
     allowedHeaders: ['Content-Type', 'Authorization', 'x-csrf-token'], 
     credentials: true,
