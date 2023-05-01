@@ -6,9 +6,9 @@ TiffinManagment is a basic Tiffin Ordering Application that is build using the M
 
 - [TiffinManagment](https://tiffin-managment-client.vercel.app/)
 
-## Features
+# Features
 
-# For Users
+## For Users
 
 - Sign Up
 - Sign In
@@ -17,7 +17,7 @@ TiffinManagment is a basic Tiffin Ordering Application that is build using the M
 - Making Payment
 - Calcelling Ordered Tiffin Before Provider Confirm It
 
-# For Providers
+## For Providers
 
 - Sign UP
 - Sign In
