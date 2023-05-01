@@ -15,7 +15,7 @@ TiffinManagment is a basic Tiffin Ordering Application that is build using the M
 - Serching For Tiffin Providers 
 - Ordering Tiffing From Specific Provider
 - Making Payment
-- Calcelling Ordered Tiffin Before Provider Confirm It
+- Cancelling Ordered Tiffin Before Provider Confirm it
 
 ## For Providers
 
@@ -26,9 +26,11 @@ TiffinManagment is a basic Tiffin Ordering Application that is build using the M
 
 ## Tech Stack
 
-**Client:** React, Redux, TailwindCSS
+**Client:** React, Redux, TailwindCSS, Material UI
 
 **Server:** Node, Express
+
+**Database:** MongoDB
 
 **Deployment:** Vercel(Frontend), Backend(Cyclic)
 
@@ -71,9 +73,6 @@ To Installing Dependency for server
 
 To run this project, you will need to add the following environment variables to your .env file
 
-### Environment Variables for Client
-
-`REACT_APP_SERVER_ACCESS_BASE_URL`
 
 ### Environment Variables for Server
 
