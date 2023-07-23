@@ -18,6 +18,7 @@ TiffinManagment is a basic Tiffin Ordering Application that is build using the M
 - Ordering Tiffing From Specific Provider
 - Making Payment
 - Cancelling Ordered Tiffin Before Provider Confirm it
+- Making a Review after a order has delivered
 
 ## For Providers
 
@@ -73,26 +74,33 @@ To Installing Dependency for server
 
 ### Step-3 Adding Environment Variables
 
-To run this project, you will need to add the following environment variables to your .env file
+To run this project with your own database you will need to add the following environment variables to your .env file of server
+Else you can use my database
+
+## If you are creating your own database Replace (https://vivacious-tuna-gloves.cyclic.app) -> (http://localhost:4000) and add below evnironment vairables
 
 
 ### Environment Variables for Server
 
-`PORT`
+`PORT` : 4000
 
-`MONGODB_CONNECTION`
+`MONGODB_CONNECTION` : You can get it by creating database on Mongo Cloud
 
-`SECRET_KEY`
+`SECRET_KEY` : Random combinations of characters or digits
 
-`CLOUDINARY_CLOUD_NAME`
+`CLOUDINARY_CLOUD_NAME` : From Cloudinary website
 
-`CLOUDINARY_API_KEY`
+`CLOUDINARY_API_KEY` : From Cloudinary Website
 
-`CLOUDINARY_API_SECRET`
+`CLOUDINARY_API_SECRET` : From Cloudinary Website
 
-`KEY_ID`
+`KEY_ID` : Razorpay Key Id
 
-`KEY_SECRET`
+`KEY_SECRET` : Razorpay Secret Key
+
+`EMAIL` : Email for Email Services
+
+`PASS` : Password of Email
 
 
 ### Step-4 Start the Application on local machine
