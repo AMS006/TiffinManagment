@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon ./src/index.js"
   },
-  "author": "Anas Kunal Aniket",
+  "author": "Anas",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.0",
