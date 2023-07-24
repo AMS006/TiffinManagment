@@ -20,7 +20,7 @@ function getLabelText(value) {
   return `${value} Star${value !== 1 ? 's' : ''}, ${labels[value]}`;
 }
 
-export default function RatingStar({value,setValue}) {
+export default function RatingStar({ value, setValue }) {
   const [hover, setHover] = React.useState(-1);
 
   return (

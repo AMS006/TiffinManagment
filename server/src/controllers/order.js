@@ -71,7 +71,8 @@ exports.updateOrderStatus = async(req,res) =>{
         const status = req.body.status
         const id = req.body._id
         let subject,message,email;
-        if(status === "Delivered"){        
+        
+        if(status === "Delivered"){     
             subject = "Delivered: Your Order for Food is Delivered Successfully"
             message = `Hi ${req.body.user.name} \n Your Order for ${req.body.food.name} has been delivered \n Thank You`
             email = req.body.user.email
@@ -82,7 +83,7 @@ exports.updateOrderStatus = async(req,res) =>{
             const quantity = req.body.food.quantity + req.body.quantity
             await foodModel.findByIdAndUpdate(req.body.food._id,{$set:{quantity}})
         }
-        await sendEmail({email,subject,message});
+        // await sendEmail({email,subject,message});
 
         if(!id)
             return res.status(400).json({message:"No Order Found"})

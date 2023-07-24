@@ -10,6 +10,7 @@ const order = require('./routes/order')
 const address = require('./routes/address');
 const review  = require('./routes/review')
 const moment = require('moment')
+
 const CronJob = require('cron').CronJob;
 const initialData = require('./routes/initialData')
 const foodModel = require('./models/food')
@@ -18,12 +19,10 @@ const app = express()
 env.config();
 
 app.use(cors({
-    origin: 'http://localhost:3000', 
+    origin: ['https://tiffin-managment-client.vercel.app','http://localhost:3000'], 
     methods: ['GET', 'PUT', 'POST','DELETE'], 
     allowedHeaders: ['Content-Type', 'Authorization', 'x-csrf-token'], 
-    credentials: true,
-    maxAge: 5000,
-    exposedHeaders: ['*', 'Authorization' ]
+    credentials: true
 }))
 app.use(express.json())
 app.use(cookieParser())
@@ -44,6 +43,7 @@ const timeInSec = moment().endOf('day').valueOf()
 new CronJob('0 0 * * *', async () => {
     await updateFood()
   }, null, true, 'Asia/Kolkata');
+
 app.use('/api/v1/user', user);
 app.use('/api/v1/provider',provider)
 app.use('/api/v1/food',food)

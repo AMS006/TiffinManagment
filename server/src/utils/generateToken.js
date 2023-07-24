@@ -9,17 +9,24 @@ const generateToken = (res,statusCode,user,isUser) =>{
             token = user.generateJwtToken(); // Generating token for provider
             text = 'providerToken'
         }
-    const options = {
-        expires : new Date(
-            Date.now() + 5 * 24 * 60 * 60 * 1000
-        ),
-        secure:false,
-        httpOnly:true
-    }
-    if(text === "userToken")
-       return res.status(statusCode).cookie(text,token, options).json({success:true, user})
-
-       return res.status(statusCode).cookie(text,token, options).json({success:true, provider:user})
+        if(isUser)
+        return res.status(statusCode).json({
+            _id:user._id,
+            name:user.name,
+            phoneNumber:user?.phoneNumber,
+            email:user.email,
+            userToken:token
+        })
+        return res.status(statusCode).json({
+            _id:user._id,
+            name:user.name,
+            email:user.email,
+            address:user?.address,
+            phoneNumber:user?.phoneNumber,
+            rating:user?.rating,
+            isAuthorized:user.isAuthorized,
+            providerToken:token
+        })
     }catch(error){
         return res.status(500).json({message:error.message});
     }

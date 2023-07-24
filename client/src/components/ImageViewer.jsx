@@ -1,7 +1,8 @@
 import React from 'react'
+import { ImCross } from 'react-icons/im'
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import {ImCross} from 'react-icons/im'
+
 const style = {
   position: 'absolute',
   top: '50%',
@@ -13,23 +14,22 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
-function ImageViewer({img,open,setOpen}) {
-    const handleClose = () => setOpen(false);
+function ImageViewer({ img, open, setOpen }) {
+  const handleClose = () => setOpen(false);
   return (
     <div className='relative'>
-        
-        <Modal
+      <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-            <div className='absolute top-2 right-2 cursor-pointer' onClick={handleClose}>
-                <ImCross />
-            </div>
+          <div className='absolute top-2 right-2 cursor-pointer' onClick={handleClose}>
+            <ImCross />
+          </div>
           <div>
-            <img src={img} alt="" />
+            <img src={img} alt="viewer" />
           </div>
         </Box>
       </Modal>

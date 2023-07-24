@@ -1,15 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Layout from './Layout'
-import { Outlet,useLocation,Navigate } from 'react-router-dom'
+import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 
 function ProviderDashboardPage() {
-  const {pathname} = useLocation();
-  if(pathname === "/provider/dashboard"){
-    return <Navigate to='/provider/dashboard/Orders'/>
-  }
+  const { pathname } = useLocation();
+  const navigate = useNavigate()
+  useEffect(() =>{
+    if (pathname === "/provider/dashboard"){
+      navigate('/provider/dashboard/orders')
+    }
+  },[navigate,pathname])
   return (
     <div className='ml-44 mt-14'>
-        <Outlet />
+      <Outlet />
     </div>
   )
 }

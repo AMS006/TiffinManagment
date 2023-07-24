@@ -1,8 +1,8 @@
 import React from 'react'
 import Footer from '../components/Footer'
-import Navbar from '../components/Navbar'
+import Navbar from '../components/Navbar/Navbar'
 
-const HomeLayout = (Component) => ({...props}) =>{
+const HomeLayout = (Component) => ({ ...props }) => {
   return (
     <div>
       <Navbar />

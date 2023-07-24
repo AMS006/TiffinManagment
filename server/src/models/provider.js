@@ -32,7 +32,7 @@ const providerSchema = new mongoose.Schema({
     },
     isAuthorized:{
         type:Boolean,
-        default:false
+        default:true
     },
     providerLogo:{
         type:String

@@ -1,32 +1,37 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import axios from 'axios'
-import {Provider} from 'react-redux'
-import {store} from './redux/store'
-import {BrowserRouter} from 'react-router-dom'
-import { transitions, positions, Provider as AlertProvider } from 'react-alert'
-import AlertTemplate from 'react-alert-template-basic'
+import axios from "axios";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { Provider } from "react-redux";
+import { Toaster } from "react-hot-toast";
+import { BrowserRouter, useLocation } from "react-router-dom";
+import App from "./App";
+import { store } from "./redux/store";
+import "./index.css";
 
-const options = {
-  // you can also just use 'bottom center'
-  position: positions.BOTTOM_CENTER,
-  timeout: 5000,
-  offset: '30px',
-  // you can also just use 'scale'
-  transition: transitions.SCALE
+const root = ReactDOM.createRoot(document.getElementById("root"));
+axios.defaults.withCredentials = true;
+if (localStorage.providerToken) {
+  const { providerToken } = JSON.parse(localStorage.providerToken);
+  axios.defaults.headers.common["Authorization"] = `Bearer ${providerToken}`;
+} else if (localStorage.userToken) {
+  const { userToken } = JSON.parse(localStorage.userToken);
+  axios.defaults.headers.common["Authorization"] = `Bearer ${userToken}`;
 }
-const root = ReactDOM.createRoot(document.getElementById('root'));
-axios.defaults.withCredentials = true
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
 root.render(
+  <BrowserRouter>
+    <ScrollToTop />
     <Provider store={store}>
-       <AlertProvider template={AlertTemplate} {...options}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </AlertProvider>
+      <Toaster />
+      <App />
     </Provider>
+  </BrowserRouter>
 );
-
-

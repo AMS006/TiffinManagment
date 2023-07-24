@@ -4,19 +4,12 @@ const { isProvider } = require('../middleware/isProvider');
 const router = express.Router()
 const multer = require('multer')
 
-const storage = multer.diskStorage({
-    destination: "./src/uploads",
-    filename: function (req, file, cb) {
-      cb(null, Date.now() + "-" + file.originalname);
-    },
-  });
+const storage = multer.memoryStorage()
 const upload = multer({storage});
 
 router.post('/register',upload.single("providerLogo"),registerProvider);
 
 router.post('/login', loginProvider);
-
-router.get('/logout', isProvider, logoutProvider);
 
 router.get('/', getAllProviders);
 

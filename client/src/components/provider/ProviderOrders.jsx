@@ -4,14 +4,13 @@ import { getAllOrders } from '../../redux/order/order.action'
 import OrderTable from './OrderTable'
 
 function ProviderOrders() {
-  const provider = useSelector((state)=> state.provider.provider)
+  const provider = useSelector((state) => state.provider.provider)
   const dispatch = useDispatch()
-  useEffect(()=>{
-    if(provider){
-      console.log(provider._id)
+  useEffect(() => {
+    if (provider) {
       dispatch(getAllOrders(provider._id))
     }
-  },[provider])
+  }, [provider, dispatch])
   return (
     <>
       <div className='p-2'>
@@ -20,7 +19,7 @@ function ProviderOrders() {
       <div className='px-2'>
         <OrderTable />
       </div>
-      </>
+    </>
   )
 }
 

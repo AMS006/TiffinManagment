@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
+import { IoClose } from 'react-icons/io5';
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 import IconButton from '@mui/material/IconButton';
-import {IoClose} from 'react-icons/io5';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -46,15 +46,15 @@ BootstrapDialogTitle.propTypes = {
 };
 
 export default function FoodViewModal(props) {
-    const {
-        open,
-        setOpen,
-        foodDetails
-    } = props
+  const {
+    open,
+    setOpen,
+    foodDetails
+  } = props
   const handleClose = () => {
     setOpen(false);
   };
-  if(!foodDetails){
+  if (!foodDetails) {
     return null;
   }
   return (
@@ -70,26 +70,26 @@ export default function FoodViewModal(props) {
         <DialogContent dividers>
           <div className='grid grid-cols-2 gap-6'>
             <div >
-                <h2 className='font-semibold'>Food Name</h2>
-                <p className=''>{foodDetails.name}</p>
+              <h2 className='font-semibold'>Food Name</h2>
+              <p className=''>{foodDetails.name}</p>
             </div>
             <div >
-                <h2 className='font-semibold'>Food Price</h2>
-                <p className=''>₹{foodDetails.price}</p>
+              <h2 className='font-semibold'>Food Price</h2>
+              <p className=''>₹{foodDetails.price}</p>
             </div>
             <div>
-                <h2 className='font-semibold'>Food Type</h2>
-                <p className=''>{`${foodDetails.isVeg?'Veg':'Non-Veg'}`}</p>
+              <h2 className='font-semibold'>Food Type</h2>
+              <p className=''>{`${foodDetails.isVeg ? 'Veg' : 'Non-Veg'}`}</p>
             </div>
             <div className='col-span-2'>
-                <h2 className='font-semibold'>Food Description</h2>
-                <p className='text-sm'>{foodDetails.description}</p>
+              <h2 className='font-semibold'>Food Description</h2>
+              <p className='text-sm'>{foodDetails.description}</p>
             </div>
             <div className='col-span-2'>
-                <h2 className='font-semibold py-4'>Food Image</h2>
-                    <div className='h-36 w-36'>
-                        <img src={foodDetails.image} className='w-full h-full'/>
-                    </div>
+              <h2 className='font-semibold py-4'>Food Image</h2>
+              <div className='h-36 w-36'>
+                <img src={foodDetails.image} alt="Food" className='w-full h-full' />
+              </div>
             </div>
           </div>
         </DialogContent>
