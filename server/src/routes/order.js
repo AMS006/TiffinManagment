@@ -11,7 +11,7 @@ router.get('/user',isUser, getUserOrders);
 
 router.get('/provider', isProvider, getProvidersOrders);
 
-router.post('/updateStatus',updateOrderStatus);
+router.put('/updateStatus',updateOrderStatus);
 
 router.delete('/:_id',deleteOrder);
 

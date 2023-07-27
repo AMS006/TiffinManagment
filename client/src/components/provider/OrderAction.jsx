@@ -1,9 +1,9 @@
-import React,{useEffect,useState} from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { useDispatch } from 'react-redux';
 import { updateOrder } from '../../redux/order/order.action';
 
 const options = [
@@ -13,19 +13,20 @@ const options = [
 
 const ITEM_HEIGHT = 48;
 
-export default function OrderActionMenu({order}) {
+export default function OrderActionMenu({ order }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-  const [status,setStatus] = useState("")
+  const [status, setStatus] = useState("")
   const dispatch = useDispatch()
-   useEffect(()=>{
-        if(order)
-            dispatch(updateOrder({_id:order._id,status,user:order.user,provider:order.provider,food:order.food}))
-   },[status])
+
+  useEffect(() => {
+    if (order)
+      dispatch(updateOrder({ _id: order._id, status, user: order.user, provider: order.provider, food: order.food }))
+  }, [dispatch,status,order])
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget)
   };
-  const handleChange = (option) =>{
+  const handleChange = (option) => {
     setStatus(option)
     handleClose();
   }
@@ -61,7 +62,7 @@ export default function OrderActionMenu({order}) {
         }}
       >
         {options.map((option) => (
-          <MenuItem key={option} selected={option === 'Pyxis'} onClick={()=>handleChange(option)}>
+          <MenuItem key={option} selected={option === 'Pyxis'} onClick={() => handleChange(option)}>
             {option}
           </MenuItem>
         ))}

@@ -1,10 +1,10 @@
-import React,{useState,useEffect} from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import {BsThreeDots} from 'react-icons/bs'
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableFooter from '@mui/material/TableFooter';
@@ -18,11 +18,7 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import { styled } from '@mui/material/styles';
 import TableHead from '@mui/material/TableHead';
-import { useSelector } from 'react-redux';
 import OrderActionMenu from './OrderAction';
-// import { useDispatch, useSelector } from 'react-redux';
-// import {MdDelete,MdEdit} from 'react-icons/md'
-// import {AiFillEye} from 'react-icons/ai'
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -110,37 +106,22 @@ TablePaginationActions.propTypes = {
 export default function OrderTable() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(8);
-  const [activeOrder,setActiveOrder] = useState("");
-  
+  const [activeOrder, setActiveOrder] = useState("");
+
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - 10) : 0;
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
-  
+
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
   let orders = useSelector((state) => state.orders.orders)
-  let items;
-  useEffect(()=>{
-    if(orders && orders.length > 0){
-      items = [...orders]
-      items.sort((a,b)=>{
-        let date1 = new Date(a.date)
-        let date2 = new Date(b.date)
-        date1 = date1.getTime()
-        date2 = date2.getTime()
 
-        return date2-date1;
-      })
-      orders = items
-      console.log(orders)
-    }
-  },[orders])
-  if(orders && orders.length<=0){
+  if (orders && orders.length <= 0) {
     return (
       <div className='flex items-center justify-center w-full py-3'>
         <p className='text-gray-500 text-lg'>No Orders Found</p>
@@ -149,89 +130,76 @@ export default function OrderTable() {
   }
   return (
     <>
-    {orders && <div className=''>
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
+      {orders && <div className=''>
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
             <TableHead>
-                <TableRow>
+              <TableRow>
                 <StyledTableCell align='center'>Order Id</StyledTableCell>
                 <StyledTableCell align='center'>Date</StyledTableCell>
                 <StyledTableCell align='center'>User Name</StyledTableCell>
                 <StyledTableCell align='center'>Food Name</StyledTableCell>
                 <StyledTableCell align='center'>Quantity</StyledTableCell>
-                <StyledTableCell align='centeer'>TotalPrice</StyledTableCell>
-                <StyledTableCell align='centeer'>Address</StyledTableCell>
+                <StyledTableCell align='center'>TotalPrice</StyledTableCell>
+                <StyledTableCell align='center'>Address</StyledTableCell>
                 <StyledTableCell align='center'>PaymentStatus</StyledTableCell>
                 <StyledTableCell align='center'>OrderStatus</StyledTableCell>
-                </TableRow>
+              </TableRow>
             </TableHead>
-        <TableBody>
-          {(rowsPerPage > 0
-            ? orders.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            : orders
-          ).map((order,index) => (
-            <StyledTableRow key={index}>
-                <StyledTableCell align='center'>
-                  {index+1}
-                </StyledTableCell>
-                <StyledTableCell align='center'>{order.date}</StyledTableCell>
-                <StyledTableCell align='center'>{order.user.name}</StyledTableCell>
-                <StyledTableCell align='center'>{order.food.name}</StyledTableCell>
-                <StyledTableCell align='center'>{order.quantity}</StyledTableCell>
-                <StyledTableCell align='center'>₹{order.totalAmount}</StyledTableCell>
-                <StyledTableCell align='center'>{order.address}</StyledTableCell>
-                <StyledTableCell align='center'>{order.paymentStatus}</StyledTableCell>
-                <StyledTableCell align='center'>
-                  <div className='flex items-center gap-2'>
-                    <span>{order.orderStatus}</span>
-                    {order.orderStatus==="Ordered" && <span onClick={()=>setActiveOrder(order)}><OrderActionMenu order={activeOrder}/></span>}
-                  </div>
-                </StyledTableCell>
+            <TableBody>
+              {(rowsPerPage > 0
+                ? orders.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                : orders
+              ).map((order, index) => (
+                <StyledTableRow key={index}>
+                  <StyledTableCell align='center'>
+                    {index + 1}
+                  </StyledTableCell>
+                  <StyledTableCell align='center'>{order.date}</StyledTableCell>
+                  <StyledTableCell align='center'>{order.user.name}</StyledTableCell>
+                  <StyledTableCell align='center'>{order.food.name}</StyledTableCell>
+                  <StyledTableCell align='center'>{order.quantity}</StyledTableCell>
+                  <StyledTableCell align='center'>₹{order.totalAmount}</StyledTableCell>
+                  <StyledTableCell align='center'>{order.address}</StyledTableCell>
+                  <StyledTableCell align='center'>{order.paymentStatus}</StyledTableCell>
+                  <StyledTableCell align='center'>
+                    <div className='flex items-center gap-2'>
+                      <span>{order.orderStatus}</span>
+                      {order.orderStatus === "Ordered" && <span onClick={() => setActiveOrder(order)}><OrderActionMenu order={activeOrder} /></span>}
+                    </div>
+                  </StyledTableCell>
+                </StyledTableRow>
+              ))}
 
-                {/* // <StyledTableCell align='center'>
-                //   <div className='flex gap-2 items-center justify-center'>
-                //     <button className='border px-1 pr-2 py-1 flex items-center rounded-md  text-white bg-blue-600' style={{gap:'1px'}} onClick={()=> handleFoodModal(food)}>
-                //       <AiFillEye className='text-white' style={{color:'white', fontSize:'14px'}}/>
-                //       <span className='' >View</span>
-                //     </button>
-                //     <button className='border px-2 py-1 flex items-center rounded-md  bg-red-600 text-white' style={{gap:'1px'}} onClick={()=>foodDelete(food._id)}>
-                //       <MdDelete className='text-white' style={{color:'white', fontSize:'14px'}}/>
-                //       <span>Delete</span>
-                //     </button>
-                //   </div>
-                // </StyledTableCell> */}
-              </StyledTableRow>
-          ))}
-
-          {emptyRows > 0 && (
-            <TableRow style={{ height: 53 * emptyRows }}>
-              <TableCell colSpan={6} />
-            </TableRow>
-          )}
-        </TableBody>
-        <TableFooter>
-          <TableRow>
-            <TablePagination
-              rowsPerPageOptions={[8, 16, { label: 'All', value: -1 }]}
-              colSpan={3}
-              count={3}//orders.length
-              rowsPerPage={rowsPerPage}
-              page={page}
-              SelectProps={{
-                inputProps: {
-                  'aria-label': 'rows per page',
-                },
-                native: true,
-              }}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-              ActionsComponent={TablePaginationActions}
-            />
-          </TableRow>
-        </TableFooter>
-      </Table>
-    </TableContainer>
-    </div>}
+              {emptyRows > 0 && (
+                <TableRow style={{ height: 53 * emptyRows }}>
+                  <TableCell colSpan={6} />
+                </TableRow>
+              )}
+            </TableBody>
+            <TableFooter>
+              <TableRow>
+                <TablePagination
+                  rowsPerPageOptions={[8, 16, { label: 'All', value: -1 }]}
+                  colSpan={3}
+                  count={3}//orders.length
+                  rowsPerPage={rowsPerPage}
+                  page={page}
+                  SelectProps={{
+                    inputProps: {
+                      'aria-label': 'rows per page',
+                    },
+                    native: true,
+                  }}
+                  onPageChange={handleChangePage}
+                  onRowsPerPageChange={handleChangeRowsPerPage}
+                  ActionsComponent={TablePaginationActions}
+                />
+              </TableRow>
+            </TableFooter>
+          </Table>
+        </TableContainer>
+      </div>}
     </>
   );
 }

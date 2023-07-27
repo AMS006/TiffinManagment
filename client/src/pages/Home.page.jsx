@@ -1,21 +1,21 @@
+import React, { useEffect, useState } from 'react'
 import { CircularProgress } from '@mui/material'
-import React, { useEffect,useState } from 'react'
-import ChooseUs from '../components/ChooseUs'
-import HeroSlider from '../components/HeroSlider'
-import Info from '../components/Info'
-import Testimonials from '../components/Testimonials'
+import ChooseUs from '../components/Home/ChooseUs'
+import HeroSlider from '../components/Home/HeroSlider'
+import Info from '../components/Home/Info'
+import Testimonials from '../components/Home/Testimonials'
 import HomeLayout from '../layouts/Home.layout'
 
 function HomePage() {
-  const [active,setActive] = useState(false);
-  useEffect(()=>{
+  const [active, setActive] = useState(false);
+  useEffect(() => {
     setTimeout(() => {
       setActive(true)
     }, 600);
-  },[])
-  if(!active){
-    return(
-      <div className='w-full flex items-center justify-center' style={{height:'85vh'}}>
+  }, [])
+  if (!active) {
+    return (
+      <div className='w-full flex items-center justify-center' style={{ height: '85vh' }}>
         <CircularProgress />
       </div>
     )
@@ -25,7 +25,7 @@ function HomePage() {
       <HeroSlider />
       <ChooseUs />
       <Testimonials />
-      <Info /> 
+      <Info />
     </div>
   )
 }
