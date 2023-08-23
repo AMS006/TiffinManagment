@@ -34,6 +34,8 @@ TiffinManagment is a basic Tiffin Ordering Application that is build using the M
 
 **Database:** MongoDB
 
+**Payment** RazorPay
+
 **Deployment:** Vercel(Frontend), Backend(Cyclic)
 
 ## Installation Guide
@@ -72,11 +74,6 @@ To Installing Dependency for server
 ```
 
 ### Step-3 Adding Environment Variables
-
-To run this project with your own database you will need to add the following environment variables to your .env file of server
-Else you can use my database
-
-## If you are creating your own database Replace (https://vivacious-tuna-gloves.cyclic.app) -> (http://localhost:4000) and add below evnironment vairables
 
 
 ### Environment Variables for Server
