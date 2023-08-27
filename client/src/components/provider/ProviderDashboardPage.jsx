@@ -11,7 +11,7 @@ function ProviderDashboardPage() {
     }
   },[navigate,pathname])
   return (
-    <div className='ml-44 mt-14'>
+    <div className='md:ml-44 mt-14'>
       <Outlet />
     </div>
   )

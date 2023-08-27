@@ -2,12 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+html{
+    height: 100%;
+}
 body{
     background: #ffff;
     color: #2e2c35;
+    height: 100%;
 }
 #root{
     overflow:auto;
+    height: 100%;
+}
+nav,footer{
+    flex-shrink: 0;
+}
+main{
+    flex-grow: 1;
 }
 .swiper-pagination-bullet-active{
     background: #0f172a !important;

@@ -4,9 +4,11 @@ import Navbar from '../components/Navbar/Navbar'
 
 const HomeLayout = (Component) => ({ ...props }) => {
   return (
-    <div>
+    <div className='flex flex-col h-full overflow-x-hidden'>
       <Navbar />
-      <Component {...props} />
+      <main>
+        <Component {...props} />
+      </main>
       <Footer />
     </div>
   )

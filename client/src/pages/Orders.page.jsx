@@ -53,21 +53,21 @@ function OrdersPage() {
                 {orders.map((order, idx) => (
                     <div className='md:flex gap-2 border-b py-2' key={idx}>
                         <div className='w-32 h-28 overflow-hidden'>
-                            <img src={order.food.image} alt="" />
+                            <img src={order?.food?.image} alt="" />
                         </div>
                         <div className='flex justify-between items-center'>
                             <div>
-                                <p>Name: <span className='font-semibold'>{order.food.name}</span></p>
-                                <p>Quantity : <span className='font-semibold'>{order.quantity}</span></p>
-                                <p>Price : <span className='font-semibold'>₹{order.totalAmount}</span></p>
-                                <p>OrderStatus: <span className='font-semibold'>{order.orderStatus}</span></p>
+                                <p>Name: <span className='font-semibold'>{order?.food?.name}</span></p>
+                                <p>Quantity : <span className='font-semibold'>{order?.quantity}</span></p>
+                                <p>Price : <span className='font-semibold'>₹{order?.totalAmount}</span></p>
+                                <p>OrderStatus: <span className='font-semibold'>{order?.orderStatus}</span></p>
                                 <div className='flex gap-2 justify-between'>
-                                    <p>OrderedDate: <span className='font-semibold'>{order.date}</span></p>
+                                    <p>OrderedDate: <span className='font-semibold'>{order?.date}</span></p>
                                     <div>
-                                        {order.orderStatus === "Ordered" && <button className='bg-red-500 text-white px-2 py-1 rounded ' onClick={() => handleCancel(order)}>Cancel Order</button>}
+                                        {order?.orderStatus === "Ordered" && <button className='bg-red-500 text-white px-2 py-1 rounded ' onClick={() => handleCancel(order)}>Cancel Order</button>}
                                     </div>
                                 </div>
-                                {order.orderStatus === "Delivered" && <button className="cursor-pointer text-blue-800 hover:underline" onClick={() => handleReviewModal(order)}>Write a Review</button>}
+                                {order?.orderStatus === "Delivered" && <button className="cursor-pointer text-blue-800 hover:underline" onClick={() => handleReviewModal(order)}>Write a Review</button>}
                             </div>
 
                         </div>

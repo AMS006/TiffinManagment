@@ -4,7 +4,8 @@
   "description": "Tiffin Server Application",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon ./src/index.js"
+    "start":"node ./src/index.js",
+    "dev": "nodemon ./src/index.js"
   },
   "author": "Anas",
   "license": "ISC",
@@ -14,17 +15,14 @@
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "cron": "^2.1.0",
-    "datauri": "^4.1.0",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "express-validator": "^6.14.2",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.29.4",
     "mongoose": "^6.7.2",
     "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.8.0",
     "nodemon": "^2.0.20",
-    "path": "^0.12.7",
     "razorpay": "^2.8.4",
     "streamifier": "^0.1.1"
   }

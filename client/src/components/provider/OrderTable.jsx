@@ -19,6 +19,7 @@ import LastPageIcon from '@mui/icons-material/LastPage';
 import { styled } from '@mui/material/styles';
 import TableHead from '@mui/material/TableHead';
 import OrderActionMenu from './OrderAction';
+import { CircularProgress } from '@mui/material';
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -119,7 +120,15 @@ export default function OrderTable() {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-  let orders = useSelector((state) => state.orders.orders)
+  let {orders,loading} = useSelector((state) => state.orders)
+
+  if(loading){
+    return(
+      <div className='w-full flex items-center justify-center' style={{ height: '85vh' }}>
+        <CircularProgress />
+      </div>
+    )
+  }
 
   if (orders && orders.length <= 0) {
     return (
@@ -155,13 +164,13 @@ export default function OrderTable() {
                   <StyledTableCell align='center'>
                     {index + 1}
                   </StyledTableCell>
-                  <StyledTableCell align='center'>{order.date}</StyledTableCell>
-                  <StyledTableCell align='center'>{order.user.name}</StyledTableCell>
-                  <StyledTableCell align='center'>{order.food.name}</StyledTableCell>
-                  <StyledTableCell align='center'>{order.quantity}</StyledTableCell>
-                  <StyledTableCell align='center'>₹{order.totalAmount}</StyledTableCell>
-                  <StyledTableCell align='center'>{order.address}</StyledTableCell>
-                  <StyledTableCell align='center'>{order.paymentStatus}</StyledTableCell>
+                  <StyledTableCell align='center'>{order?.date}</StyledTableCell>
+                  <StyledTableCell align='center'>{order?.user?.name}</StyledTableCell>
+                  <StyledTableCell align='center'>{!order?.food?'Food Deleted':order.food.name}</StyledTableCell>
+                  <StyledTableCell align='center'>{order?.quantity}</StyledTableCell>
+                  <StyledTableCell align='center'>₹{order?.totalAmount}</StyledTableCell>
+                  <StyledTableCell align='center'>{order?.address}</StyledTableCell>
+                  <StyledTableCell align='center'>{order?.paymentStatus}</StyledTableCell>
                   <StyledTableCell align='center'>
                     <div className='flex items-center gap-2'>
                       <span>{order.orderStatus}</span>
