@@ -1,7 +1,6 @@
 # TiffinManagment
 
-![Logo](https://res.cloudinary.com/dkgoet9em/image/upload/v1682947169/TiffinManagment/TiffinManagment_gxuxzu.png)
-
+![Logo](https://res.cloudinary.com/dkgoet9em/image/upload/v1690174978/TiffinManagment/TiffinWala_aa7m54.png)
 TiffinManagment is a basic Tiffin Ordering Application that is build using the MERN Stack stands for MongoDB, ExpressJS, ReactJS, NodeJS.
 
 ## Live Website
@@ -34,6 +33,8 @@ TiffinManagment is a basic Tiffin Ordering Application that is build using the M
 **Server:** Node, Express
 
 **Database:** MongoDB
+
+**Payment** RazorPay
 
 **Deployment:** Vercel(Frontend), Backend(Cyclic)
 
@@ -73,11 +74,6 @@ To Installing Dependency for server
 ```
 
 ### Step-3 Adding Environment Variables
-
-To run this project with your own database you will need to add the following environment variables to your .env file of server
-Else you can use my database
-
-## If you are creating your own database Replace (https://vivacious-tuna-gloves.cyclic.app) -> (http://localhost:4000) and add below evnironment vairables
 
 
 ### Environment Variables for Server

@@ -16,7 +16,16 @@ const foodModel = require('./models/food')
 
 const app = express()
 
+<<<<<<< HEAD
 env.config();
+=======
+app.use(cors({
+    origin: ['https://tiffin-managment-client.vercel.app','http://localhost:3000'], 
+    methods: ['GET', 'PUT', 'POST','DELETE'], 
+    allowedHeaders: ['Content-Type', 'Authorization', 'x-csrf-token'], 
+    credentials: true
+}))
+>>>>>>> caa9e46c53c46e4201cdf7408d499e5c0380425d
 app.use(express.json())
 app.use(cookieParser())
 
