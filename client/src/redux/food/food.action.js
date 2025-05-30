@@ -13,7 +13,7 @@ export const getAllFood = (_id) => async (dispatch) => {
     dispatch(foodRequest());
     const foodData = await axios({
       method: "GET",
-      url: `https://vivacious-tuna-gloves.cyclic.app/api/v1/food/provider/${_id}`,
+      url: `https://tiffin-managment.onrender.com/api/v1/food/provider/${_id}`,
     });
     return dispatch(foodSuccess(foodData.data));
   } catch (error) {
@@ -25,7 +25,7 @@ export const getFoodById = (_id) => async (dispatch) => {
     dispatch(foodRequest());
     const food = await axios({
       method: "GET",
-      url: ` https://vivacious-tuna-gloves.cyclic.app/api/v1/food/${_id}`,
+      url: ` https://tiffin-managment.onrender.com/api/v1/food/${_id}`,
     });
     return dispatch(getFoodByIdSuccess(food.data));
   } catch (error) {
@@ -37,7 +37,7 @@ export const addFood = (data) => async (dispatch) => {
     dispatch(foodRequest());
     const food = await axios({
       method: "POST",
-      url: "https://vivacious-tuna-gloves.cyclic.app/api/v1/food",
+      url: "https://tiffin-managment.onrender.com/api/v1/food",
       data,
     });
     return dispatch(addFoodSuccess(food.data));
@@ -50,7 +50,7 @@ export const deleteFood = (_id) => async (dispatch) => {
     dispatch(foodRequest());
     await axios({
       method: "DELETE",
-      url: `https://vivacious-tuna-gloves.cyclic.app/api/v1/food/${_id}`,
+      url: `https://tiffin-managment.onrender.com/api/v1/food/${_id}`,
     });
     dispatch(deleteFoodSuccess(_id));
   } catch (error) {

@@ -22,6 +22,7 @@ import { styled } from '@mui/material/styles';
 import TableHead from '@mui/material/TableHead';
 import { deleteFood } from '../../redux/food/food.action';
 import FoodViewModal from './FoodViewModal';
+import { CircularProgress } from '@mui/material';
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -122,7 +123,7 @@ export default function ProductPage() {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-  const foods = useSelector((state) => state.foods.foods);
+  const {foods,loading} = useSelector((state) => state.foods);
   const [foodModal, setFoodModal] = useState(false);
   const [activeFood, setActiveFood] = useState("")
   const dispatch = useDispatch()
@@ -136,6 +137,13 @@ export default function ProductPage() {
   const handleFoodModal = (food) => {
     setActiveFood(food);
     setFoodModal(true);
+  }
+  if(loading){
+    return(
+      <div className='w-full flex items-center justify-center' style={{ height: '85vh' }}>
+        <CircularProgress />
+      </div>
+    )
   }
   if (foods && foods.length <= 0) {
     return (

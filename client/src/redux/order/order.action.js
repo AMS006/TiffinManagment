@@ -14,7 +14,7 @@ export const getAllOrders = () => async (dispatch) => {
     dispatch(orderRequest());
     const orders = await axios({
       method: "GET",
-      url: `https://vivacious-tuna-gloves.cyclic.app/api/v1/order/provider`,
+      url: `https://tiffin-managment.onrender.com/api/v1/order/provider`,
     });
     dispatch(orderSuccess(orders.data));
   } catch (error) {
@@ -26,7 +26,7 @@ export const getUserOrders = () => async (dispatch) => {
     dispatch(orderRequest());
     const orders = await axios({
       method: "GET",
-      url: "https://vivacious-tuna-gloves.cyclic.app/api/v1/order/user",
+      url: "https://tiffin-managment.onrender.com/api/v1/order/user",
     });
     return dispatch(userOrderSuccess(orders.data));
   } catch (error) {
@@ -38,7 +38,7 @@ export const addOrder = (data) => async (dispatch) => {
     dispatch(orderRequest());
     const order = await axios({
       method: "POST",
-      url: `https://vivacious-tuna-gloves.cyclic.app/api/v1/order`,
+      url: `https://tiffin-managment.onrender.com/api/v1/order`,
       data,
     });
     dispatch(addOrderSuccess(order.data));
@@ -51,7 +51,7 @@ export const updateOrder = (data) => async (dispatch) => {
     dispatch(orderRequest());
     const order = await axios({
       method: "PUT",
-      url: `https://vivacious-tuna-gloves.cyclic.app/api/v1/order/updateStatus`,
+      url: `https://tiffin-managment.onrender.com/api/v1/order/updateStatus`,
       data,
     });
     dispatch(updateOrderSuccess(order.data));
@@ -64,7 +64,7 @@ export const updateUserOrder = (data) => async (dispatch) => {
     dispatch(orderRequest());
     const order = await axios({
       method: "POST",
-      url: `https://vivacious-tuna-gloves.cyclic.app/api/v1/order/updateStatus`,
+      url: `https://tiffin-managment.onrender.com/api/v1/order/updateStatus`,
       data,
     });
     dispatch(updateUserOrderSuccess(order.data));
@@ -77,7 +77,7 @@ export const deleteOrder = (data) => async (dispatch) => {
     dispatch(orderRequest());
     await axios({
       method: "DELETE",
-      url: `https://vivacious-tuna-gloves.cyclic.app/api/v1/order/${data.order._id}`,
+      url: `https://tiffin-managment.onrender.com/api/v1/order/${data.order._id}`,
     });
   } catch (error) {
     return dispatch(orderFail(error.response.data.message));

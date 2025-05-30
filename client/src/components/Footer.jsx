@@ -5,8 +5,8 @@ import { BsFacebook, BsInstagram, BsTwitter, BsFillTelephoneFill } from 'react-i
 
 function Footer() {
   return (
-    <>
-      <div className=" mx-auto py-4 bg-slate-800 sm:grid text-white sm:grid-cols-2 sm:px-4 md:grid md:grid-cols-3 px-5 lg:grid lg:grid-cols-3 mt-2">
+    <footer>
+      <div className="py-4 bg-slate-800 sm:grid text-white sm:grid-cols-2 sm:px-4 md:grid md:grid-cols-3 px-5 lg:grid lg:grid-cols-3 mt-2">
         <div className="naem order-1 pt-5 md:pl-7 lg:flex flex-col items-center ">
           <h1 className='font-bold text-3xl  md:text-4xl md:pt-1'>Tiffin Wala</h1>
           <p className='sm:text-xl sm:font-medium px-3 pt-4 text-lg font-normal md:px-0'>Your Everyday Meals</p>
@@ -36,7 +36,7 @@ function Footer() {
         <p className='text-normal text-center font-medium sm:text-lg sm:font-serif'>© Copyright 2022-2023 www.TiffinWala.com All rights reserved. Developed by TiffinWala</p>
       </div>
 
-    </>
+    </footer>
   )
 }
 

@@ -7,7 +7,7 @@ export const login = (user) => async (dispatch) => {
     const config = { headers: { "Content-Type": "application/json" } };
     const userData = await axios({
       method: "POST",
-      url: "https://vivacious-tuna-gloves.cyclic.app/api/v1/user/login",
+      url: "https://tiffin-managment.onrender.com/api/v1/user/login",
       data: user,
       config,
     });
@@ -29,7 +29,7 @@ export const signUp = (user) => async (dispatch) => {
     const config = { headers: { "Content-Type": "application/json" } };
     const userData = await axios({
       method: "POST",
-      url: "https://vivacious-tuna-gloves.cyclic.app/api/v1/user/signup",
+      url: "https://tiffin-managment.onrender.com/api/v1/user/signup",
       data: user,
       config,
     });
@@ -60,7 +60,7 @@ export const getUserDetails = () => async (dispatch) => {
     dispatch(userRequest());
     const userData = await axios({
       method: "GET",
-      url: "https://vivacious-tuna-gloves.cyclic.app/api/v1/user/me",
+      url: "https://tiffin-managment.onrender.com/api/v1/user/me",
     });
     return dispatch(userSuccess(userData.data.user));
   } catch (error) {
